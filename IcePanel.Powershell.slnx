@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="src/IcePanel.Api/IcePanel.Api.csproj" />
+  <Project Path="src/IcePanel.Powershell/IcePanel.Powershell.csproj" />
+</Solution>
