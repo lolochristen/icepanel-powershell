@@ -1,4 +1,4 @@
-Import-Module .\IcePanel.Powershell.dll
+Import-Module .\IcePanel.Powershell.psd1
 
 # store your API key in a file named .icepanel in your user profile folder
 $apikey = Get-Content -Path "$($env:USERPROFILE)\.icepanel"
