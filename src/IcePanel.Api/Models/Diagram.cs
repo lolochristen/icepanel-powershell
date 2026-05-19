@@ -94,6 +94,14 @@ namespace IcePanel.Api.Models
 #else
         public string LandscapeId { get; set; }
 #endif
+        /// <summary>The latestEntityId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LatestEntityId { get; set; }
+#nullable restore
+#else
+        public string LatestEntityId { get; set; }
+#endif
         /// <summary>model object id this object belongs to</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -132,14 +140,6 @@ namespace IcePanel.Api.Models
         public DateTimeOffset? PinnedAt { get; set; }
         /// <summary>The pinnedIndex property</summary>
         public double? PinnedIndex { get; set; }
-        /// <summary>The stats property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::IcePanel.Api.Models.DiagramStats? Stats { get; set; }
-#nullable restore
-#else
-        public global::IcePanel.Api.Models.DiagramStats Stats { get; set; }
-#endif
         /// <summary>The status property</summary>
         public global::IcePanel.Api.Models.DiagramStatus? Status { get; set; }
         /// <summary>The type property</summary>
@@ -166,13 +166,13 @@ namespace IcePanel.Api.Models
 #else
         public string VersionId { get; set; }
 #endif
-        /// <summary>Custom zoom levels for specific model objects within the diagram. The key is the modelObjectId and the value is the diagram id.</summary>
+        /// <summary>The zoomOverrides property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::IcePanel.Api.Models.Diagram_zoomOverrides? ZoomOverrides { get; set; }
+        public global::IcePanel.Api.Models.DiagramZoomOverridesNullable? ZoomOverrides { get; set; }
 #nullable restore
 #else
-        public global::IcePanel.Api.Models.Diagram_zoomOverrides ZoomOverrides { get; set; }
+        public global::IcePanel.Api.Models.DiagramZoomOverridesNullable ZoomOverrides { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::IcePanel.Api.Models.Diagram"/> and sets the default values.
@@ -215,6 +215,7 @@ namespace IcePanel.Api.Models
                 { "index", n => { Index = n.GetDoubleValue(); } },
                 { "labels", n => { Labels = n.GetObjectValue<global::IcePanel.Api.Models.Diagram_labels>(global::IcePanel.Api.Models.Diagram_labels.CreateFromDiscriminatorValue); } },
                 { "landscapeId", n => { LandscapeId = n.GetStringValue(); } },
+                { "latestEntityId", n => { LatestEntityId = n.GetStringValue(); } },
                 { "modelId", n => { ModelId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "objectCount", n => { ObjectCount = n.GetObjectValue<global::IcePanel.Api.Models.DiagramObjectCount>(global::IcePanel.Api.Models.DiagramObjectCount.CreateFromDiscriminatorValue); } },
@@ -222,7 +223,6 @@ namespace IcePanel.Api.Models
                 { "pinned", n => { Pinned = n.GetBoolValue(); } },
                 { "pinnedAt", n => { PinnedAt = n.GetDateTimeOffsetValue(); } },
                 { "pinnedIndex", n => { PinnedIndex = n.GetDoubleValue(); } },
-                { "stats", n => { Stats = n.GetObjectValue<global::IcePanel.Api.Models.DiagramStats>(global::IcePanel.Api.Models.DiagramStats.CreateFromDiscriminatorValue); } },
                 { "status", n => { Status = n.GetEnumValue<global::IcePanel.Api.Models.DiagramStatus>(); } },
                 { "type", n => { Type = n.GetEnumValue<global::IcePanel.Api.Models.DiagramType>(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
@@ -230,7 +230,7 @@ namespace IcePanel.Api.Models
                 { "updatedById", n => { UpdatedById = n.GetStringValue(); } },
                 { "version", n => { Version = n.GetDoubleValue(); } },
                 { "versionId", n => { VersionId = n.GetStringValue(); } },
-                { "zoomOverrides", n => { ZoomOverrides = n.GetObjectValue<global::IcePanel.Api.Models.Diagram_zoomOverrides>(global::IcePanel.Api.Models.Diagram_zoomOverrides.CreateFromDiscriminatorValue); } },
+                { "zoomOverrides", n => { ZoomOverrides = n.GetObjectValue<global::IcePanel.Api.Models.DiagramZoomOverridesNullable>(global::IcePanel.Api.Models.DiagramZoomOverridesNullable.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -256,6 +256,7 @@ namespace IcePanel.Api.Models
             writer.WriteDoubleValue("index", Index);
             writer.WriteObjectValue<global::IcePanel.Api.Models.Diagram_labels>("labels", Labels);
             writer.WriteStringValue("landscapeId", LandscapeId);
+            writer.WriteStringValue("latestEntityId", LatestEntityId);
             writer.WriteStringValue("modelId", ModelId);
             writer.WriteStringValue("name", Name);
             writer.WriteObjectValue<global::IcePanel.Api.Models.DiagramObjectCount>("objectCount", ObjectCount);
@@ -263,7 +264,6 @@ namespace IcePanel.Api.Models
             writer.WriteBoolValue("pinned", Pinned);
             writer.WriteDateTimeOffsetValue("pinnedAt", PinnedAt);
             writer.WriteDoubleValue("pinnedIndex", PinnedIndex);
-            writer.WriteObjectValue<global::IcePanel.Api.Models.DiagramStats>("stats", Stats);
             writer.WriteEnumValue<global::IcePanel.Api.Models.DiagramStatus>("status", Status);
             writer.WriteEnumValue<global::IcePanel.Api.Models.DiagramType>("type", Type);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
@@ -271,7 +271,7 @@ namespace IcePanel.Api.Models
             writer.WriteStringValue("updatedById", UpdatedById);
             writer.WriteDoubleValue("version", Version);
             writer.WriteStringValue("versionId", VersionId);
-            writer.WriteObjectValue<global::IcePanel.Api.Models.Diagram_zoomOverrides>("zoomOverrides", ZoomOverrides);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.DiagramZoomOverridesNullable>("zoomOverrides", ZoomOverrides);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

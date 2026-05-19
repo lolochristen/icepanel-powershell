@@ -3,10 +3,9 @@ using System.Runtime.Serialization;
 using System;
 namespace IcePanel.Api.Models
 {
+    /// <summary>Type or category of technology</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public enum CatalogTechnologyTypeNullable
-    #pragma warning restore CS1591
     {
         [EnumMember(Value = "data-storage")]
         #pragma warning disable CS1591

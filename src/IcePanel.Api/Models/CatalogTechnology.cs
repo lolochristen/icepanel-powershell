@@ -38,7 +38,7 @@ namespace IcePanel.Api.Models
 #else
         public string Category { get; set; }
 #endif
-        /// <summary>The color property</summary>
+        /// <summary>Technology color used in diagrams</summary>
         public global::IcePanel.Api.Models.TagColor? Color { get; set; }
         /// <summary>The createdAt property</summary>
         public DateTimeOffset? CreatedAt { get; set; }
@@ -149,7 +149,7 @@ namespace IcePanel.Api.Models
 #else
         public string OrganizationId { get; set; }
 #endif
-        /// <summary>The provider property</summary>
+        /// <summary>Service provider that provides this technology</summary>
         public global::IcePanel.Api.Models.CatalogProviderNullable? Provider { get; set; }
         /// <summary>If rejected, detail description of why</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -159,7 +159,7 @@ namespace IcePanel.Api.Models
 #else
         public string RejectionMessage { get; set; }
 #endif
-        /// <summary>The rejectionReason property</summary>
+        /// <summary>If rejected, the reason why</summary>
         public global::IcePanel.Api.Models.CatalogTechnologyReviewRejectionReason? RejectionReason { get; set; }
         /// <summary>Restriction on which model object or connections this technology can be added to</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -177,9 +177,9 @@ namespace IcePanel.Api.Models
 #else
         public List<string> Slugs { get; set; }
 #endif
-        /// <summary>The status property</summary>
-        public global::IcePanel.Api.Models.CatalogTechnologyStatus? Status { get; set; }
-        /// <summary>The type property</summary>
+        /// <summary>Current status of the technology, including pending review, approved, and rejected. Approved technologies are visible to all users. Set to null to make the technology private.</summary>
+        public global::IcePanel.Api.Models.CatalogTechnologyStatusNullable? Status { get; set; }
+        /// <summary>Type or category of technology</summary>
         public global::IcePanel.Api.Models.CatalogTechnologyTypeNullable? Type { get; set; }
         /// <summary>The updatedAt property</summary>
         public DateTimeOffset? UpdatedAt { get; set; }
@@ -269,7 +269,7 @@ namespace IcePanel.Api.Models
                 { "rejectionReason", n => { RejectionReason = n.GetEnumValue<global::IcePanel.Api.Models.CatalogTechnologyReviewRejectionReason>(); } },
                 { "restrictions", n => { Restrictions = n.GetCollectionOfEnumValues<global::IcePanel.Api.Models.CatalogRestriction>()?.AsList(); } },
                 { "slugs", n => { Slugs = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "status", n => { Status = n.GetEnumValue<global::IcePanel.Api.Models.CatalogTechnologyStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::IcePanel.Api.Models.CatalogTechnologyStatusNullable>(); } },
                 { "type", n => { Type = n.GetEnumValue<global::IcePanel.Api.Models.CatalogTechnologyTypeNullable>(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "updatedBy", n => { UpdatedBy = n.GetEnumValue<global::IcePanel.Api.Models.AuthType>(); } },
@@ -313,7 +313,7 @@ namespace IcePanel.Api.Models
             writer.WriteEnumValue<global::IcePanel.Api.Models.CatalogTechnologyReviewRejectionReason>("rejectionReason", RejectionReason);
             writer.WriteCollectionOfEnumValues<global::IcePanel.Api.Models.CatalogRestriction>("restrictions", Restrictions);
             writer.WriteCollectionOfPrimitiveValues<string>("slugs", Slugs);
-            writer.WriteEnumValue<global::IcePanel.Api.Models.CatalogTechnologyStatus>("status", Status);
+            writer.WriteEnumValue<global::IcePanel.Api.Models.CatalogTechnologyStatusNullable>("status", Status);
             writer.WriteEnumValue<global::IcePanel.Api.Models.CatalogTechnologyTypeNullable>("type", Type);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
             writer.WriteEnumValue<global::IcePanel.Api.Models.AuthType>("updatedBy", UpdatedBy);

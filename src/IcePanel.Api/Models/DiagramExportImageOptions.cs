@@ -14,6 +14,14 @@ namespace IcePanel.Api.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Fetch and apply draft tasks before producing the export</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DraftId { get; set; }
+#nullable restore
+#else
+        public string DraftId { get; set; }
+#endif
         /// <summary>The flowId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -54,6 +62,8 @@ namespace IcePanel.Api.Models
 #else
         public List<string> HideIds { get; set; }
 #endif
+        /// <summary>Maximum pixel width for the exported PNG. The image will be scaled down if the diagram exceeds this width. Defaults to no limit (up to 10240px).</summary>
+        public int? MaxWidth { get; set; }
         /// <summary>The pinIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -91,11 +101,13 @@ namespace IcePanel.Api.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "draftId", n => { DraftId = n.GetStringValue(); } },
                 { "flowId", n => { FlowId = n.GetStringValue(); } },
                 { "flowPathIds", n => { FlowPathIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "focusIds", n => { FocusIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "groupId", n => { GroupId = n.GetStringValue(); } },
                 { "hideIds", n => { HideIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "maxWidth", n => { MaxWidth = n.GetIntValue(); } },
                 { "pinIds", n => { PinIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "tab", n => { Tab = n.GetEnumValue<global::IcePanel.Api.Models.DiagramExportImageOptions_tab>(); } },
                 { "theme", n => { Theme = n.GetEnumValue<global::IcePanel.Api.Models.Theme>(); } },
@@ -108,11 +120,13 @@ namespace IcePanel.Api.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("draftId", DraftId);
             writer.WriteStringValue("flowId", FlowId);
             writer.WriteCollectionOfPrimitiveValues<string>("flowPathIds", FlowPathIds);
             writer.WriteCollectionOfPrimitiveValues<string>("focusIds", FocusIds);
             writer.WriteStringValue("groupId", GroupId);
             writer.WriteCollectionOfPrimitiveValues<string>("hideIds", HideIds);
+            writer.WriteIntValue("maxWidth", MaxWidth);
             writer.WriteCollectionOfPrimitiveValues<string>("pinIds", PinIds);
             writer.WriteEnumValue<global::IcePanel.Api.Models.DiagramExportImageOptions_tab>("tab", Tab);
             writer.WriteEnumValue<global::IcePanel.Api.Models.Theme>("theme", Theme);

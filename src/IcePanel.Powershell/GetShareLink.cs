@@ -26,22 +26,9 @@ public class GetShareLink : IcePanelCmdlet
         ValueFromPipelineByPropertyName = true)]
     public string? Version { get; set; } = "latest";
 
-    [Parameter(
-        Mandatory = false,
-        ValueFromPipelineByPropertyName = true)]
-    public string? ShareLinkId { get; set; }
-
-
     protected override void ProcessRecord()
     {
         var api = GetApiClient();
-
-        if (ShareLinkId != null)
-        {
-            var result = RunSync(() => api.ShareLinks[ShareLinkId].GetAsWithShortGetResponseAsync());
-            WriteObject(result.ShareLink);
-            return;
-        }
 
         var landscapeIds = LandscapeId != null ? new[] { LandscapeId } : Landscape?.Select(p => p.Id);
         if (landscapeIds == null) throw new ArgumentException("Landscape need to be set");

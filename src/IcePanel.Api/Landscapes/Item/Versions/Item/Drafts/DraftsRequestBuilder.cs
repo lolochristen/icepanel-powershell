@@ -47,7 +47,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Drafts
         {
         }
         /// <summary>
-        /// Index
+        /// List
         /// </summary>
         /// <returns>A <see cref="global::IcePanel.Api.Landscapes.Item.Versions.Item.Drafts.DraftsGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -76,7 +76,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Drafts
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Landscapes.Item.Versions.Item.Drafts.DraftsGetResponse>(requestInfo, global::IcePanel.Api.Landscapes.Item.Versions.Item.Drafts.DraftsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Index
+        /// List
         /// </summary>
         /// <returns>A <see cref="global::IcePanel.Api.Landscapes.Item.Versions.Item.Drafts.DraftsResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -118,6 +118,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Drafts
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 429 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::IcePanel.Api.Landscapes.Item.Versions.Item.Drafts.DraftsPostResponse?> PostAsDraftsPostResponseAsync(global::IcePanel.Api.Models.DraftRequired body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -137,6 +138,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Drafts
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "429", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "503", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Landscapes.Item.Versions.Item.Drafts.DraftsPostResponse>(requestInfo, global::IcePanel.Api.Landscapes.Item.Versions.Item.Drafts.DraftsPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -153,6 +155,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Drafts
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 429 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 503 status code</exception>
         [Obsolete("This method is obsolete. Use PostAsDraftsPostResponseAsync instead.")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -173,11 +176,12 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Drafts
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "429", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "503", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Landscapes.Item.Versions.Item.Drafts.DraftsResponse>(requestInfo, global::IcePanel.Api.Landscapes.Item.Versions.Item.Drafts.DraftsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Index
+        /// List
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -227,7 +231,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Drafts
             return new global::IcePanel.Api.Landscapes.Item.Versions.Item.Drafts.DraftsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Index
+        /// List
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class DraftsRequestBuilderGetQueryParameters 

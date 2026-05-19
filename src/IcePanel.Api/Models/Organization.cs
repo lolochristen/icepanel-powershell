@@ -14,6 +14,18 @@ namespace IcePanel.Api.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>AI features that are enabled for the organization</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IcePanel.Api.Models.OrganizationAIFeatures? AiFeatures { get; set; }
+#nullable restore
+#else
+        public global::IcePanel.Api.Models.OrganizationAIFeatures AiFeatures { get; set; }
+#endif
+        /// <summary>Whether to enable all AI features for the organization</summary>
+        public bool? AiFeaturesEnabled { get; set; }
+        /// <summary>The aiModel property</summary>
+        public global::IcePanel.Api.Models.OrganizationAiModel? AiModel { get; set; }
         /// <summary>The autoInviteDomains property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -36,6 +48,8 @@ namespace IcePanel.Api.Models
 #else
         public string BillingEmail { get; set; }
 #endif
+        /// <summary>The billingMonthlyCost property</summary>
+        public double? BillingMonthlyCost { get; set; }
         /// <summary>The billingPaymentMethod property</summary>
         public bool? BillingPaymentMethod { get; set; }
         /// <summary>The cancelAt property</summary>
@@ -54,6 +68,14 @@ namespace IcePanel.Api.Models
 #else
         public string CreatedById { get; set; }
 #endif
+        /// <summary>The experiments property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IcePanel.Api.Models.Organization_experiments? Experiments { get; set; }
+#nullable restore
+#else
+        public global::IcePanel.Api.Models.Organization_experiments Experiments { get; set; }
+#endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -62,6 +84,8 @@ namespace IcePanel.Api.Models
 #else
         public string Id { get; set; }
 #endif
+        /// <summary>The language property</summary>
+        public global::IcePanel.Api.Models.OrganizationLanguage? Language { get; set; }
         /// <summary>The lineShapeDefault property</summary>
         public global::IcePanel.Api.Models.LineShape? LineShapeDefault { get; set; }
         /// <summary>The name property</summary>
@@ -72,6 +96,8 @@ namespace IcePanel.Api.Models
 #else
         public string Name { get; set; }
 #endif
+        /// <summary>Whether OAuth connections can make changes to landscape data</summary>
+        public bool? OauthLandscapeWriteEnabled { get; set; }
         /// <summary>The plan property</summary>
         public global::IcePanel.Api.Models.OrganizationPlan? Plan { get; set; }
         /// <summary>The planEndsAt property</summary>
@@ -145,20 +171,27 @@ namespace IcePanel.Api.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "aiFeatures", n => { AiFeatures = n.GetObjectValue<global::IcePanel.Api.Models.OrganizationAIFeatures>(global::IcePanel.Api.Models.OrganizationAIFeatures.CreateFromDiscriminatorValue); } },
+                { "aiFeaturesEnabled", n => { AiFeaturesEnabled = n.GetBoolValue(); } },
+                { "aiModel", n => { AiModel = n.GetEnumValue<global::IcePanel.Api.Models.OrganizationAiModel>(); } },
                 { "autoInviteDomains", n => { AutoInviteDomains = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "billingCollectionMethod", n => { BillingCollectionMethod = n.GetEnumValue<global::IcePanel.Api.Models.OrganizationCollectionMethod>(); } },
                 { "billingCurrency", n => { BillingCurrency = n.GetEnumValue<global::IcePanel.Api.Models.OrganizationBillingCurrency>(); } },
                 { "billingCycle", n => { BillingCycle = n.GetEnumValue<global::IcePanel.Api.Models.OrganizationBillingCycle>(); } },
                 { "billingEmail", n => { BillingEmail = n.GetStringValue(); } },
+                { "billingMonthlyCost", n => { BillingMonthlyCost = n.GetDoubleValue(); } },
                 { "billingPaymentMethod", n => { BillingPaymentMethod = n.GetBoolValue(); } },
                 { "cancelAt", n => { CancelAt = n.GetDateTimeOffsetValue(); } },
                 { "canceledAt", n => { CanceledAt = n.GetDateTimeOffsetValue(); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "createdBy", n => { CreatedBy = n.GetEnumValue<global::IcePanel.Api.Models.AuthType>(); } },
                 { "createdById", n => { CreatedById = n.GetStringValue(); } },
+                { "experiments", n => { Experiments = n.GetObjectValue<global::IcePanel.Api.Models.Organization_experiments>(global::IcePanel.Api.Models.Organization_experiments.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetStringValue(); } },
+                { "language", n => { Language = n.GetEnumValue<global::IcePanel.Api.Models.OrganizationLanguage>(); } },
                 { "lineShapeDefault", n => { LineShapeDefault = n.GetEnumValue<global::IcePanel.Api.Models.LineShape>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "oauthLandscapeWriteEnabled", n => { OauthLandscapeWriteEnabled = n.GetBoolValue(); } },
                 { "plan", n => { Plan = n.GetEnumValue<global::IcePanel.Api.Models.OrganizationPlan>(); } },
                 { "planEndsAt", n => { PlanEndsAt = n.GetDateTimeOffsetValue(); } },
                 { "seats", n => { Seats = n.GetDoubleValue(); } },
@@ -180,20 +213,27 @@ namespace IcePanel.Api.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::IcePanel.Api.Models.OrganizationAIFeatures>("aiFeatures", AiFeatures);
+            writer.WriteBoolValue("aiFeaturesEnabled", AiFeaturesEnabled);
+            writer.WriteEnumValue<global::IcePanel.Api.Models.OrganizationAiModel>("aiModel", AiModel);
             writer.WriteCollectionOfPrimitiveValues<string>("autoInviteDomains", AutoInviteDomains);
             writer.WriteEnumValue<global::IcePanel.Api.Models.OrganizationCollectionMethod>("billingCollectionMethod", BillingCollectionMethod);
             writer.WriteEnumValue<global::IcePanel.Api.Models.OrganizationBillingCurrency>("billingCurrency", BillingCurrency);
             writer.WriteEnumValue<global::IcePanel.Api.Models.OrganizationBillingCycle>("billingCycle", BillingCycle);
             writer.WriteStringValue("billingEmail", BillingEmail);
+            writer.WriteDoubleValue("billingMonthlyCost", BillingMonthlyCost);
             writer.WriteBoolValue("billingPaymentMethod", BillingPaymentMethod);
             writer.WriteDateTimeOffsetValue("cancelAt", CancelAt);
             writer.WriteDateTimeOffsetValue("canceledAt", CanceledAt);
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteEnumValue<global::IcePanel.Api.Models.AuthType>("createdBy", CreatedBy);
             writer.WriteStringValue("createdById", CreatedById);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.Organization_experiments>("experiments", Experiments);
             writer.WriteStringValue("id", Id);
+            writer.WriteEnumValue<global::IcePanel.Api.Models.OrganizationLanguage>("language", Language);
             writer.WriteEnumValue<global::IcePanel.Api.Models.LineShape>("lineShapeDefault", LineShapeDefault);
             writer.WriteStringValue("name", Name);
+            writer.WriteBoolValue("oauthLandscapeWriteEnabled", OauthLandscapeWriteEnabled);
             writer.WriteEnumValue<global::IcePanel.Api.Models.OrganizationPlan>("plan", Plan);
             writer.WriteDateTimeOffsetValue("planEndsAt", PlanEndsAt);
             writer.WriteDoubleValue("seats", Seats);

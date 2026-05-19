@@ -62,7 +62,7 @@ namespace IcePanel.Api.Models
 #else
         public string NewsUrl { get; set; }
 #endif
-        /// <summary>The type property</summary>
+        /// <summary>Type or category of technology</summary>
         public global::IcePanel.Api.Models.CatalogTechnologyTypeNullable? Type { get; set; }
         /// <summary>Release notes or changelog url</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

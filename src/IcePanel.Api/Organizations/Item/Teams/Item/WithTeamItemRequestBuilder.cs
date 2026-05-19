@@ -56,6 +56,7 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 404 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::IcePanel.Api.Organizations.Item.Teams.Item.WithTeamDeleteResponse?> DeleteAsWithTeamDeleteResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -73,6 +74,7 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item
                 { "404", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "503", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Organizations.Item.Teams.Item.WithTeamDeleteResponse>(requestInfo, global::IcePanel.Api.Organizations.Item.Teams.Item.WithTeamDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -87,6 +89,7 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 404 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 503 status code</exception>
         [Obsolete("This method is obsolete. Use DeleteAsWithTeamDeleteResponseAsync instead.")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -105,16 +108,18 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item
                 { "404", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "503", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Organizations.Item.Teams.Item.WithTeamResponse>(requestInfo, global::IcePanel.Api.Organizations.Item.Teams.Item.WithTeamResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Find
+        /// Get
         /// </summary>
         /// <returns>A <see cref="global::IcePanel.Api.Organizations.Item.Teams.Item.WithTeamGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 403 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 404 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -130,18 +135,20 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "401", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "404", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Organizations.Item.Teams.Item.WithTeamGetResponse>(requestInfo, global::IcePanel.Api.Organizations.Item.Teams.Item.WithTeamGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Find
+        /// Get
         /// </summary>
         /// <returns>A <see cref="global::IcePanel.Api.Organizations.Item.Teams.Item.WithTeamResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 403 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 404 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
         [Obsolete("This method is obsolete. Use GetAsWithTeamGetResponseAsync instead.")]
@@ -158,6 +165,7 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "401", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "404", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
@@ -176,6 +184,7 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 404 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::IcePanel.Api.Organizations.Item.Teams.Item.WithTeamPatchResponse?> PatchAsWithTeamPatchResponseAsync(global::IcePanel.Api.Models.TeamPartial body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -195,6 +204,7 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item
                 { "404", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "503", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Organizations.Item.Teams.Item.WithTeamPatchResponse>(requestInfo, global::IcePanel.Api.Organizations.Item.Teams.Item.WithTeamPatchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -211,6 +221,7 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 404 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 503 status code</exception>
         [Obsolete("This method is obsolete. Use PatchAsWithTeamPatchResponseAsync instead.")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -231,6 +242,7 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item
                 { "404", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "503", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Organizations.Item.Teams.Item.WithTeamResponse>(requestInfo, global::IcePanel.Api.Organizations.Item.Teams.Item.WithTeamResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -254,7 +266,7 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item
             return requestInfo;
         }
         /// <summary>
-        /// Find
+        /// Get
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

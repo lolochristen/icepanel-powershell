@@ -117,10 +117,10 @@ namespace IcePanel.Api.Models
         /// <summary>The icon property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::IcePanel.Api.Models.Objects? Icon { get; set; }
+        public global::IcePanel.Api.Models.ModelObjectIconNullable? Icon { get; set; }
 #nullable restore
 #else
-        public global::IcePanel.Api.Models.Objects Icon { get; set; }
+        public global::IcePanel.Api.Models.ModelObjectIconNullable Icon { get; set; }
 #endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -145,6 +145,14 @@ namespace IcePanel.Api.Models
 #nullable restore
 #else
         public string LandscapeId { get; set; }
+#endif
+        /// <summary>The latestEntityId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LatestEntityId { get; set; }
+#nullable restore
+#else
+        public string LatestEntityId { get; set; }
 #endif
         /// <summary>The linked property</summary>
         public bool? Linked { get; set; }
@@ -182,7 +190,7 @@ namespace IcePanel.Api.Models
 #endif
         /// <summary>The status property</summary>
         public global::IcePanel.Api.Models.ModelObjectStatus? Status { get; set; }
-        /// <summary>The tagIds property</summary>
+        /// <summary>Tag IDs assigned to this model</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? TagIds { get; set; }
@@ -200,7 +208,7 @@ namespace IcePanel.Api.Models
 #endif
         /// <summary>Model object (+child diagram, diagram groups and flows) can only be edited by owners and admins</summary>
         public bool? TeamOnlyEditing { get; set; }
-        /// <summary>Catalog technology IDs assigned to this model</summary>
+        /// <summary>Technology IDs assigned to this model</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? TechnologyIds { get; set; }
@@ -274,10 +282,11 @@ namespace IcePanel.Api.Models
                 { "flows", n => { Flows = n.GetObjectValue<global::IcePanel.Api.Models.ModelObject_flows>(global::IcePanel.Api.Models.ModelObject_flows.CreateFromDiscriminatorValue); } },
                 { "groupIds", n => { GroupIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "handleId", n => { HandleId = n.GetStringValue(); } },
-                { "icon", n => { Icon = n.GetObjectValue<global::IcePanel.Api.Models.Objects>(global::IcePanel.Api.Models.Objects.CreateFromDiscriminatorValue); } },
+                { "icon", n => { Icon = n.GetObjectValue<global::IcePanel.Api.Models.ModelObjectIconNullable>(global::IcePanel.Api.Models.ModelObjectIconNullable.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "labels", n => { Labels = n.GetObjectValue<global::IcePanel.Api.Models.ModelObject_labels>(global::IcePanel.Api.Models.ModelObject_labels.CreateFromDiscriminatorValue); } },
                 { "landscapeId", n => { LandscapeId = n.GetStringValue(); } },
+                { "latestEntityId", n => { LatestEntityId = n.GetStringValue(); } },
                 { "linked", n => { Linked = n.GetBoolValue(); } },
                 { "links", n => { Links = n.GetObjectValue<global::IcePanel.Api.Models.ModelObject_links>(global::IcePanel.Api.Models.ModelObject_links.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -320,10 +329,11 @@ namespace IcePanel.Api.Models
             writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObject_flows>("flows", Flows);
             writer.WriteCollectionOfPrimitiveValues<string>("groupIds", GroupIds);
             writer.WriteStringValue("handleId", HandleId);
-            writer.WriteObjectValue<global::IcePanel.Api.Models.Objects>("icon", Icon);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectIconNullable>("icon", Icon);
             writer.WriteStringValue("id", Id);
             writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObject_labels>("labels", Labels);
             writer.WriteStringValue("landscapeId", LandscapeId);
+            writer.WriteStringValue("latestEntityId", LatestEntityId);
             writer.WriteBoolValue("linked", Linked);
             writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObject_links>("links", Links);
             writer.WriteStringValue("name", Name);

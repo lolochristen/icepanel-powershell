@@ -13,22 +13,6 @@ namespace IcePanel.Api.Organizations.Item.Landscapes
     public partial class LandscapesPostRequestBody : global::IcePanel.Api.Models.LandscapeRequired, IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>The parts of the format that&apos;s common to all versions/kinds of entity.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::IcePanel.Api.Models.BackstageEntityMap? BackstageEntities { get; set; }
-#nullable restore
-#else
-        public global::IcePanel.Api.Models.BackstageEntityMap BackstageEntities { get; set; }
-#endif
-        /// <summary>Represents a Structurizr workspace, which is a wrapper for a software architecture model, views, and documentation.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::IcePanel.Api.Models.StructurizrWorkspace? StructurizrWorkspace { get; set; }
-#nullable restore
-#else
-        public global::IcePanel.Api.Models.StructurizrWorkspace StructurizrWorkspace { get; set; }
-#endif
         /// <summary>The templateId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -55,8 +39,6 @@ namespace IcePanel.Api.Organizations.Item.Landscapes
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "backstageEntities", n => { BackstageEntities = n.GetObjectValue<global::IcePanel.Api.Models.BackstageEntityMap>(global::IcePanel.Api.Models.BackstageEntityMap.CreateFromDiscriminatorValue); } },
-                { "structurizrWorkspace", n => { StructurizrWorkspace = n.GetObjectValue<global::IcePanel.Api.Models.StructurizrWorkspace>(global::IcePanel.Api.Models.StructurizrWorkspace.CreateFromDiscriminatorValue); } },
                 { "templateId", n => { TemplateId = n.GetStringValue(); } },
             };
         }
@@ -68,8 +50,6 @@ namespace IcePanel.Api.Organizations.Item.Landscapes
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<global::IcePanel.Api.Models.BackstageEntityMap>("backstageEntities", BackstageEntities);
-            writer.WriteObjectValue<global::IcePanel.Api.Models.StructurizrWorkspace>("structurizrWorkspace", StructurizrWorkspace);
             writer.WriteStringValue("templateId", TemplateId);
         }
     }

@@ -14,6 +14,18 @@ namespace IcePanel.Api.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>AI features that are enabled for the organization</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IcePanel.Api.Models.OrganizationAIFeatures? AiFeatures { get; set; }
+#nullable restore
+#else
+        public global::IcePanel.Api.Models.OrganizationAIFeatures AiFeatures { get; set; }
+#endif
+        /// <summary>Whether to enable all AI features for the organization</summary>
+        public bool? AiFeaturesEnabled { get; set; }
+        /// <summary>The aiModel property</summary>
+        public global::IcePanel.Api.Models.OrganizationAiModel? AiModel { get; set; }
         /// <summary>The billingCurrency property</summary>
         public global::IcePanel.Api.Models.OrganizationBillingCurrency? BillingCurrency { get; set; }
         /// <summary>The billingCycle property</summary>
@@ -26,6 +38,16 @@ namespace IcePanel.Api.Models
 #else
         public string BillingEmail { get; set; }
 #endif
+        /// <summary>The experiments property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IcePanel.Api.Models.OrganizationPartial_experiments? Experiments { get; set; }
+#nullable restore
+#else
+        public global::IcePanel.Api.Models.OrganizationPartial_experiments Experiments { get; set; }
+#endif
+        /// <summary>The language property</summary>
+        public global::IcePanel.Api.Models.OrganizationLanguage? Language { get; set; }
         /// <summary>The lineShapeDefault property</summary>
         public global::IcePanel.Api.Models.LineShape? LineShapeDefault { get; set; }
         /// <summary>The name property</summary>
@@ -36,6 +58,8 @@ namespace IcePanel.Api.Models
 #else
         public string Name { get; set; }
 #endif
+        /// <summary>Whether OAuth connections can make changes to landscape data</summary>
+        public bool? OauthLandscapeWriteEnabled { get; set; }
         /// <summary>The shareLinkAuthDomains property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -71,11 +95,17 @@ namespace IcePanel.Api.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "aiFeatures", n => { AiFeatures = n.GetObjectValue<global::IcePanel.Api.Models.OrganizationAIFeatures>(global::IcePanel.Api.Models.OrganizationAIFeatures.CreateFromDiscriminatorValue); } },
+                { "aiFeaturesEnabled", n => { AiFeaturesEnabled = n.GetBoolValue(); } },
+                { "aiModel", n => { AiModel = n.GetEnumValue<global::IcePanel.Api.Models.OrganizationAiModel>(); } },
                 { "billingCurrency", n => { BillingCurrency = n.GetEnumValue<global::IcePanel.Api.Models.OrganizationBillingCurrency>(); } },
                 { "billingCycle", n => { BillingCycle = n.GetEnumValue<global::IcePanel.Api.Models.OrganizationBillingCycle>(); } },
                 { "billingEmail", n => { BillingEmail = n.GetStringValue(); } },
+                { "experiments", n => { Experiments = n.GetObjectValue<global::IcePanel.Api.Models.OrganizationPartial_experiments>(global::IcePanel.Api.Models.OrganizationPartial_experiments.CreateFromDiscriminatorValue); } },
+                { "language", n => { Language = n.GetEnumValue<global::IcePanel.Api.Models.OrganizationLanguage>(); } },
                 { "lineShapeDefault", n => { LineShapeDefault = n.GetEnumValue<global::IcePanel.Api.Models.LineShape>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "oauthLandscapeWriteEnabled", n => { OauthLandscapeWriteEnabled = n.GetBoolValue(); } },
                 { "shareLinkAuthDomains", n => { ShareLinkAuthDomains = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "shareLinksEnabled", n => { ShareLinksEnabled = n.GetBoolValue(); } },
             };
@@ -87,11 +117,17 @@ namespace IcePanel.Api.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::IcePanel.Api.Models.OrganizationAIFeatures>("aiFeatures", AiFeatures);
+            writer.WriteBoolValue("aiFeaturesEnabled", AiFeaturesEnabled);
+            writer.WriteEnumValue<global::IcePanel.Api.Models.OrganizationAiModel>("aiModel", AiModel);
             writer.WriteEnumValue<global::IcePanel.Api.Models.OrganizationBillingCurrency>("billingCurrency", BillingCurrency);
             writer.WriteEnumValue<global::IcePanel.Api.Models.OrganizationBillingCycle>("billingCycle", BillingCycle);
             writer.WriteStringValue("billingEmail", BillingEmail);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.OrganizationPartial_experiments>("experiments", Experiments);
+            writer.WriteEnumValue<global::IcePanel.Api.Models.OrganizationLanguage>("language", Language);
             writer.WriteEnumValue<global::IcePanel.Api.Models.LineShape>("lineShapeDefault", LineShapeDefault);
             writer.WriteStringValue("name", Name);
+            writer.WriteBoolValue("oauthLandscapeWriteEnabled", OauthLandscapeWriteEnabled);
             writer.WriteCollectionOfPrimitiveValues<string>("shareLinkAuthDomains", ShareLinkAuthDomains);
             writer.WriteBoolValue("shareLinksEnabled", ShareLinksEnabled);
             writer.WriteAdditionalData(AdditionalData);

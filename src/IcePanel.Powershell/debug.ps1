@@ -6,16 +6,18 @@ $org = Connect-IcePanel $apiKey
 
 #$org = Get-IcePanelOrganization
 Write-Host "Organization: $($org.Name)"
+$ls = Get-IcePanelLandscape
 
-Get-IcePanelLandscape | Format-Table
+$ls | Format-Table
 
-$ls = Get-IcePanelLandscape -Name "Isolutions Quickstart (Blazor) Template"
+#$diag = Get-IcePanelDiagram -LandscapeId $ls.Id
+#$diag | Request-IcePanelDiagramImage
 
-$diag = Get-IcePanelDiagram -LandscapeId $ls.Id
+#Export-IcePanelLandscape $ls[1].Id -FilePath "landscape.json"
 
-$diag | Format-Table
+#Get-Content -Raw "landscape.json" | Import-IcePanelLandscape $ls[0].Id
 
-Request-IcePanelDiagramImage $diag[0]
+# Request-IcePanelDiagramImage $diag[0]
 
 #Get-IcePanelModelObject -Landscape $ls | ConvertTo-Json -Depth 10 | Out-File "modelobjects.json"
 

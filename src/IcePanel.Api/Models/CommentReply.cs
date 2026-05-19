@@ -70,6 +70,14 @@ namespace IcePanel.Api.Models
 #else
         public string LandscapeId { get; set; }
 #endif
+        /// <summary>The latestEntityId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LatestEntityId { get; set; }
+#nullable restore
+#else
+        public string LatestEntityId { get; set; }
+#endif
         /// <summary>The mentionedUserIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -133,6 +141,7 @@ namespace IcePanel.Api.Models
                 { "deletedById", n => { DeletedById = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "landscapeId", n => { LandscapeId = n.GetStringValue(); } },
+                { "latestEntityId", n => { LatestEntityId = n.GetStringValue(); } },
                 { "mentionedUserIds", n => { MentionedUserIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "updatedBy", n => { UpdatedBy = n.GetEnumValue<global::IcePanel.Api.Models.AuthType>(); } },
@@ -157,6 +166,7 @@ namespace IcePanel.Api.Models
             writer.WriteStringValue("deletedById", DeletedById);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("landscapeId", LandscapeId);
+            writer.WriteStringValue("latestEntityId", LatestEntityId);
             writer.WriteCollectionOfPrimitiveValues<string>("mentionedUserIds", MentionedUserIds);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
             writer.WriteEnumValue<global::IcePanel.Api.Models.AuthType>("updatedBy", UpdatedBy);

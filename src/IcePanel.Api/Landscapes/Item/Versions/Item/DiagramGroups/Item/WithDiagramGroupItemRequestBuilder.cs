@@ -40,9 +40,11 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 403 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 404 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupDeleteResponse?> DeleteAsWithDiagramGroupDeleteResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -56,9 +58,11 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "401", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "404", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "503", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupDeleteResponse>(requestInfo, global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -69,9 +73,11 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 403 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 404 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 503 status code</exception>
         [Obsolete("This method is obsolete. Use DeleteAsWithDiagramGroupDeleteResponseAsync instead.")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -86,19 +92,22 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "401", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "404", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "503", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupResponse>(requestInfo, global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Find
+        /// Get
         /// </summary>
         /// <returns>A <see cref="global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 403 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 404 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
@@ -115,6 +124,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "401", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "404", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
@@ -122,12 +132,13 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupGetResponse>(requestInfo, global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Find
+        /// Get
         /// </summary>
         /// <returns>A <see cref="global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 403 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 404 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
@@ -145,6 +156,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "401", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "404", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
@@ -178,9 +190,11 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 400 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 403 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 409 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupPatchResponse?> PatchAsWithDiagramGroupPatchResponseAsync(global::IcePanel.Api.Models.DiagramGroupPartial body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -196,9 +210,11 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
             {
                 { "400", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "401", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "409", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "503", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupPatchResponse>(requestInfo, global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupPatchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -211,9 +227,11 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 400 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 403 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 409 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 503 status code</exception>
         [Obsolete("This method is obsolete. Use PatchAsWithDiagramGroupPatchResponseAsync instead.")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -230,9 +248,11 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
             {
                 { "400", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "401", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "409", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "503", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupResponse>(requestInfo, global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -245,18 +265,20 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 400 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 403 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 404 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 409 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 429 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupPutResponse?> PutAsWithDiagramGroupPutResponseAsync(global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupPutResponse?> PutAsWithDiagramGroupPutResponseAsync(global::IcePanel.Api.Models.DiagramGroupUpsert body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupPutResponse> PutAsWithDiagramGroupPutResponseAsync(global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupPutResponse> PutAsWithDiagramGroupPutResponseAsync(global::IcePanel.Api.Models.DiagramGroupUpsert body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -265,11 +287,13 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
             {
                 { "400", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "401", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "404", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "409", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "429", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "503", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupPutResponse>(requestInfo, global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupPutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -282,19 +306,21 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 400 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 403 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 404 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 409 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 429 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 503 status code</exception>
         [Obsolete("This method is obsolete. Use PutAsWithDiagramGroupPutResponseAsync instead.")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupResponse?> PutAsync(global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupResponse?> PutAsync(global::IcePanel.Api.Models.DiagramGroupUpsert body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupResponse> PutAsync(global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupResponse> PutAsync(global::IcePanel.Api.Models.DiagramGroupUpsert body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -303,11 +329,13 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
             {
                 { "400", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "401", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "404", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "409", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "429", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "503", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupResponse>(requestInfo, global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -331,7 +359,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
             return requestInfo;
         }
         /// <summary>
-        /// Find
+        /// Get
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -397,11 +425,11 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::IcePanel.Api.Models.DiagramGroupUpsert body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::IcePanel.Api.Landscapes.Item.Versions.Item.DiagramGroups.Item.WithDiagramGroupPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::IcePanel.Api.Models.DiagramGroupUpsert body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

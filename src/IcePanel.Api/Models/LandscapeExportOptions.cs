@@ -14,7 +14,15 @@ namespace IcePanel.Api.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The orientation property</summary>
+        /// <summary>Fetch and apply draft tasks before producing the export</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DraftId { get; set; }
+#nullable restore
+#else
+        public string DraftId { get; set; }
+#endif
+        /// <summary>Orientation to use when exporting to PDF</summary>
         public global::IcePanel.Api.Models.LandscapeExportOrientation? Orientation { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::IcePanel.Api.Models.LandscapeExportOptions"/> and sets the default values.
@@ -22,6 +30,7 @@ namespace IcePanel.Api.Models
         public LandscapeExportOptions()
         {
             AdditionalData = new Dictionary<string, object>();
+            Orientation = global::IcePanel.Api.Models.LandscapeExportOrientation.Portrait;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -41,6 +50,7 @@ namespace IcePanel.Api.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "draftId", n => { DraftId = n.GetStringValue(); } },
                 { "orientation", n => { Orientation = n.GetEnumValue<global::IcePanel.Api.Models.LandscapeExportOrientation>(); } },
             };
         }
@@ -51,6 +61,7 @@ namespace IcePanel.Api.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("draftId", DraftId);
             writer.WriteEnumValue<global::IcePanel.Api.Models.LandscapeExportOrientation>("orientation", Orientation);
             writer.WriteAdditionalData(AdditionalData);
         }

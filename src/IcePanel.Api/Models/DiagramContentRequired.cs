@@ -40,14 +40,6 @@ namespace IcePanel.Api.Models
 #else
         public global::IcePanel.Api.Models.DiagramContentRequired_objects Objects { get; set; }
 #endif
-        /// <summary>The tasksProposed property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::IcePanel.Api.Models.TaskObject>? TasksProposed { get; set; }
-#nullable restore
-#else
-        public List<global::IcePanel.Api.Models.TaskObject> TasksProposed { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::IcePanel.Api.Models.DiagramContentRequired"/> and sets the default values.
         /// </summary>
@@ -77,7 +69,6 @@ namespace IcePanel.Api.Models
                 { "commit", n => { Commit = n.GetDoubleValue(); } },
                 { "connections", n => { Connections = n.GetObjectValue<global::IcePanel.Api.Models.DiagramContentRequired_connections>(global::IcePanel.Api.Models.DiagramContentRequired_connections.CreateFromDiscriminatorValue); } },
                 { "objects", n => { Objects = n.GetObjectValue<global::IcePanel.Api.Models.DiagramContentRequired_objects>(global::IcePanel.Api.Models.DiagramContentRequired_objects.CreateFromDiscriminatorValue); } },
-                { "tasksProposed", n => { TasksProposed = n.GetCollectionOfObjectValues<global::IcePanel.Api.Models.TaskObject>(global::IcePanel.Api.Models.TaskObject.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -91,7 +82,6 @@ namespace IcePanel.Api.Models
             writer.WriteDoubleValue("commit", Commit);
             writer.WriteObjectValue<global::IcePanel.Api.Models.DiagramContentRequired_connections>("connections", Connections);
             writer.WriteObjectValue<global::IcePanel.Api.Models.DiagramContentRequired_objects>("objects", Objects);
-            writer.WriteCollectionOfObjectValues<global::IcePanel.Api.Models.TaskObject>("tasksProposed", TasksProposed);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

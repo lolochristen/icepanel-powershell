@@ -35,7 +35,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public VersionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/landscapes/{landscapeId}/versions", pathParameters)
+        public VersionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/landscapes/{landscapeId}/versions{?cursor*,filter*,limit*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public VersionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/landscapes/{landscapeId}/versions", rawUrl)
+        public VersionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/landscapes/{landscapeId}/versions{?cursor*,filter*,limit*}", rawUrl)
         {
         }
         /// <summary>
@@ -53,22 +53,24 @@ namespace IcePanel.Api.Landscapes.Item.Versions
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 403 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 404 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.VersionsGetResponse?> GetAsVersionsGetResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.VersionsGetResponse?> GetAsVersionsGetResponseAsync(Action<RequestConfiguration<global::IcePanel.Api.Landscapes.Item.Versions.VersionsRequestBuilder.VersionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.VersionsGetResponse> GetAsVersionsGetResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.VersionsGetResponse> GetAsVersionsGetResponseAsync(Action<RequestConfiguration<global::IcePanel.Api.Landscapes.Item.Versions.VersionsRequestBuilder.VersionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "401", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "404", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
@@ -82,23 +84,25 @@ namespace IcePanel.Api.Landscapes.Item.Versions
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 401 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 403 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 404 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
         [Obsolete("This method is obsolete. Use GetAsVersionsGetResponseAsync instead.")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.VersionsResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.VersionsResponse?> GetAsync(Action<RequestConfiguration<global::IcePanel.Api.Landscapes.Item.Versions.VersionsRequestBuilder.VersionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.VersionsResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::IcePanel.Api.Landscapes.Item.Versions.VersionsResponse> GetAsync(Action<RequestConfiguration<global::IcePanel.Api.Landscapes.Item.Versions.VersionsRequestBuilder.VersionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "401", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "403", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "404", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
@@ -118,6 +122,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 409 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::IcePanel.Api.Landscapes.Item.Versions.VersionsPostResponse?> PostAsVersionsPostResponseAsync(global::IcePanel.Api.Models.VersionRequired body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -137,6 +142,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions
                 { "409", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "503", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Landscapes.Item.Versions.VersionsPostResponse>(requestInfo, global::IcePanel.Api.Landscapes.Item.Versions.VersionsPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -153,6 +159,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 409 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 422 status code</exception>
         /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 500 status code</exception>
+        /// <exception cref="global::IcePanel.Api.Models.Error">When receiving a 503 status code</exception>
         [Obsolete("This method is obsolete. Use PostAsVersionsPostResponseAsync instead.")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -173,6 +180,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions
                 { "409", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "422", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
                 { "500", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
+                { "503", global::IcePanel.Api.Models.Error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Landscapes.Item.Versions.VersionsResponse>(requestInfo, global::IcePanel.Api.Landscapes.Item.Versions.VersionsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -183,11 +191,11 @@ namespace IcePanel.Api.Landscapes.Item.Versions
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::IcePanel.Api.Landscapes.Item.Versions.VersionsRequestBuilder.VersionsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::IcePanel.Api.Landscapes.Item.Versions.VersionsRequestBuilder.VersionsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -227,11 +235,38 @@ namespace IcePanel.Api.Landscapes.Item.Versions
             return new global::IcePanel.Api.Landscapes.Item.Versions.VersionsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
+        /// List
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class VersionsRequestBuilderGetQueryParameters 
+        {
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("cursor")]
+            public string? Cursor { get; set; }
+#nullable restore
+#else
+            [QueryParameter("cursor")]
+            public string Cursor { get; set; }
+#endif
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("filter")]
+            public string? Filter { get; set; }
+#nullable restore
+#else
+            [QueryParameter("filter")]
+            public string Filter { get; set; }
+#endif
+            [QueryParameter("limit")]
+            public double? Limit { get; set; }
+        }
+        /// <summary>
         /// Configuration for the request such as headers, query parameters, and middleware options.
         /// </summary>
         [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class VersionsRequestBuilderGetRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
+        public partial class VersionsRequestBuilderGetRequestConfiguration : RequestConfiguration<global::IcePanel.Api.Landscapes.Item.Versions.VersionsRequestBuilder.VersionsRequestBuilderGetQueryParameters>
         {
         }
         /// <summary>

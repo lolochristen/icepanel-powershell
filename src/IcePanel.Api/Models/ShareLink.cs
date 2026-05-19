@@ -26,6 +26,14 @@ namespace IcePanel.Api.Models
 #else
         public string CreatedById { get; set; }
 #endif
+        /// <summary>The draftId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DraftId { get; set; }
+#nullable restore
+#else
+        public string DraftId { get; set; }
+#endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -108,6 +116,7 @@ namespace IcePanel.Api.Models
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "createdBy", n => { CreatedBy = n.GetEnumValue<global::IcePanel.Api.Models.AuthType>(); } },
                 { "createdById", n => { CreatedById = n.GetStringValue(); } },
+                { "draftId", n => { DraftId = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "landscapeId", n => { LandscapeId = n.GetStringValue(); } },
                 { "password", n => { Password = n.GetStringValue(); } },
@@ -129,6 +138,7 @@ namespace IcePanel.Api.Models
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteEnumValue<global::IcePanel.Api.Models.AuthType>("createdBy", CreatedBy);
             writer.WriteStringValue("createdById", CreatedById);
+            writer.WriteStringValue("draftId", DraftId);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("landscapeId", LandscapeId);
             writer.WriteStringValue("password", Password);

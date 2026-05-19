@@ -24,10 +24,6 @@ namespace IcePanel.Api.Models
         #pragma warning disable CS1591
         Llms,
         #pragma warning restore CS1591
-        [EnumMember(Value = "structurizr")]
-        #pragma warning disable CS1591
-        Structurizr,
-        #pragma warning restore CS1591
         [EnumMember(Value = "json")]
         #pragma warning disable CS1591
         Json,

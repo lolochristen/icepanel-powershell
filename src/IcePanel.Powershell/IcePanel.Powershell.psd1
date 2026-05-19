@@ -25,6 +25,8 @@ CmdletsToExport=@(
     "Request-IcePanelDiagramImage",
     "Get-IcePanelDiagramGroup",
     "Get-IcePanelDomain",
-    "Get-IcePanelModelConnection"
+    "Get-IcePanelModelConnection",
+    "Export-IcePanelLandscape",
+    "Import-IcePanelLandscape"
     )
 }

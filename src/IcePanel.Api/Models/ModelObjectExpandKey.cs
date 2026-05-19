@@ -8,6 +8,18 @@ namespace IcePanel.Api.Models
     public enum ModelObjectExpandKey
     #pragma warning restore CS1591
     {
+        [EnumMember(Value = "domain")]
+        #pragma warning disable CS1591
+        Domain,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "flows")]
+        #pragma warning disable CS1591
+        Flows,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "tags")]
+        #pragma warning disable CS1591
+        Tags,
+        #pragma warning restore CS1591
         [EnumMember(Value = "technologies")]
         #pragma warning disable CS1591
         Technologies,

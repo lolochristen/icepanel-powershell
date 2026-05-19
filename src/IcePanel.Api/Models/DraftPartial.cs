@@ -24,13 +24,13 @@ namespace IcePanel.Api.Models
 #endif
         /// <summary>The commit property</summary>
         public double? Commit { get; set; }
-        /// <summary>The diagramIds property</summary>
+        /// <summary>The handleId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? DiagramIds { get; set; }
+        public string? HandleId { get; set; }
 #nullable restore
 #else
-        public List<string> DiagramIds { get; set; }
+        public string HandleId { get; set; }
 #endif
         /// <summary>The labels property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -50,6 +50,8 @@ namespace IcePanel.Api.Models
 #endif
         /// <summary>The status property</summary>
         public global::IcePanel.Api.Models.DraftStatus? Status { get; set; }
+        /// <summary>The summaryDirtiedAt property</summary>
+        public DateTimeOffset? SummaryDirtiedAt { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::IcePanel.Api.Models.DraftPartial"/> and sets the default values.
         /// </summary>
@@ -77,10 +79,11 @@ namespace IcePanel.Api.Models
             {
                 { "changeSummary", n => { ChangeSummary = n.GetObjectValue<global::IcePanel.Api.Models.DraftChangeSummary>(global::IcePanel.Api.Models.DraftChangeSummary.CreateFromDiscriminatorValue); } },
                 { "commit", n => { Commit = n.GetDoubleValue(); } },
-                { "diagramIds", n => { DiagramIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "handleId", n => { HandleId = n.GetStringValue(); } },
                 { "labels", n => { Labels = n.GetObjectValue<global::IcePanel.Api.Models.DraftPartial_labels>(global::IcePanel.Api.Models.DraftPartial_labels.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::IcePanel.Api.Models.DraftStatus>(); } },
+                { "summaryDirtiedAt", n => { SummaryDirtiedAt = n.GetDateTimeOffsetValue(); } },
             };
         }
         /// <summary>
@@ -92,10 +95,11 @@ namespace IcePanel.Api.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::IcePanel.Api.Models.DraftChangeSummary>("changeSummary", ChangeSummary);
             writer.WriteDoubleValue("commit", Commit);
-            writer.WriteCollectionOfPrimitiveValues<string>("diagramIds", DiagramIds);
+            writer.WriteStringValue("handleId", HandleId);
             writer.WriteObjectValue<global::IcePanel.Api.Models.DraftPartial_labels>("labels", Labels);
             writer.WriteStringValue("name", Name);
             writer.WriteEnumValue<global::IcePanel.Api.Models.DraftStatus>("status", Status);
+            writer.WriteDateTimeOffsetValue("summaryDirtiedAt", SummaryDirtiedAt);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

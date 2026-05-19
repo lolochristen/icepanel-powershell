@@ -12,7 +12,7 @@ namespace IcePanel.Api.Models
     public partial class ActionLog : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>The action property</summary>
+        /// <summary>full description of the action that happened</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::IcePanel.Api.Models.ActionObject? Action { get; set; }
@@ -38,8 +38,6 @@ namespace IcePanel.Api.Models
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>The importance property</summary>
-        public global::IcePanel.Api.Models.ActionLogImportance? Importance { get; set; }
         /// <summary>The landscapeId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -60,6 +58,22 @@ namespace IcePanel.Api.Models
         public DateTimeOffset? PerformedAt { get; set; }
         /// <summary>The performedBy property</summary>
         public global::IcePanel.Api.Models.AuthType? PerformedBy { get; set; }
+        /// <summary>The performedByAuthProvider property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PerformedByAuthProvider { get; set; }
+#nullable restore
+#else
+        public string PerformedByAuthProvider { get; set; }
+#endif
+        /// <summary>The performedByClientId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PerformedByClientId { get; set; }
+#nullable restore
+#else
+        public string PerformedByClientId { get; set; }
+#endif
         /// <summary>The performedById property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -68,6 +82,14 @@ namespace IcePanel.Api.Models
 #else
         public string PerformedById { get; set; }
 #endif
+        /// <summary>ip address of the user or api key who performed the action</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PerformedByIp { get; set; }
+#nullable restore
+#else
+        public string PerformedByIp { get; set; }
+#endif
         /// <summary>The performedByName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -75,6 +97,14 @@ namespace IcePanel.Api.Models
 #nullable restore
 #else
         public string PerformedByName { get; set; }
+#endif
+        /// <summary>The performedByUserAgent property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PerformedByUserAgent { get; set; }
+#nullable restore
+#else
+        public string PerformedByUserAgent { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::IcePanel.Api.Models.ActionLog"/> and sets the default values.
@@ -104,13 +134,16 @@ namespace IcePanel.Api.Models
                 { "action", n => { Action = n.GetObjectValue<global::IcePanel.Api.Models.ActionObject>(global::IcePanel.Api.Models.ActionObject.CreateFromDiscriminatorValue); } },
                 { "actionIds", n => { ActionIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "importance", n => { Importance = n.GetEnumValue<global::IcePanel.Api.Models.ActionLogImportance>(); } },
                 { "landscapeId", n => { LandscapeId = n.GetStringValue(); } },
                 { "parentId", n => { ParentId = n.GetStringValue(); } },
                 { "performedAt", n => { PerformedAt = n.GetDateTimeOffsetValue(); } },
                 { "performedBy", n => { PerformedBy = n.GetEnumValue<global::IcePanel.Api.Models.AuthType>(); } },
+                { "performedByAuthProvider", n => { PerformedByAuthProvider = n.GetStringValue(); } },
+                { "performedByClientId", n => { PerformedByClientId = n.GetStringValue(); } },
                 { "performedById", n => { PerformedById = n.GetStringValue(); } },
+                { "performedByIp", n => { PerformedByIp = n.GetStringValue(); } },
                 { "performedByName", n => { PerformedByName = n.GetStringValue(); } },
+                { "performedByUserAgent", n => { PerformedByUserAgent = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -123,13 +156,16 @@ namespace IcePanel.Api.Models
             writer.WriteObjectValue<global::IcePanel.Api.Models.ActionObject>("action", Action);
             writer.WriteCollectionOfPrimitiveValues<string>("actionIds", ActionIds);
             writer.WriteStringValue("id", Id);
-            writer.WriteEnumValue<global::IcePanel.Api.Models.ActionLogImportance>("importance", Importance);
             writer.WriteStringValue("landscapeId", LandscapeId);
             writer.WriteStringValue("parentId", ParentId);
             writer.WriteDateTimeOffsetValue("performedAt", PerformedAt);
             writer.WriteEnumValue<global::IcePanel.Api.Models.AuthType>("performedBy", PerformedBy);
+            writer.WriteStringValue("performedByAuthProvider", PerformedByAuthProvider);
+            writer.WriteStringValue("performedByClientId", PerformedByClientId);
             writer.WriteStringValue("performedById", PerformedById);
+            writer.WriteStringValue("performedByIp", PerformedByIp);
             writer.WriteStringValue("performedByName", PerformedByName);
+            writer.WriteStringValue("performedByUserAgent", PerformedByUserAgent);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

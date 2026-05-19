@@ -28,14 +28,6 @@ namespace IcePanel.Api.Models
 #else
         public string CreatedById { get; set; }
 #endif
-        /// <summary>The diagramHandleIds property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<string>? DiagramHandleIds { get; set; }
-#nullable restore
-#else
-        public List<string> DiagramHandleIds { get; set; }
-#endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -125,7 +117,6 @@ namespace IcePanel.Api.Models
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "createdBy", n => { CreatedBy = n.GetEnumValue<global::IcePanel.Api.Models.AuthType>(); } },
                 { "createdById", n => { CreatedById = n.GetStringValue(); } },
-                { "diagramHandleIds", n => { DiagramHandleIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "landscapeId", n => { LandscapeId = n.GetStringValue(); } },
                 { "modelHandleId", n => { ModelHandleId = n.GetStringValue(); } },
@@ -148,7 +139,6 @@ namespace IcePanel.Api.Models
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteEnumValue<global::IcePanel.Api.Models.AuthType>("createdBy", CreatedBy);
             writer.WriteStringValue("createdById", CreatedById);
-            writer.WriteCollectionOfPrimitiveValues<string>("diagramHandleIds", DiagramHandleIds);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("landscapeId", LandscapeId);
             writer.WriteStringValue("modelHandleId", ModelHandleId);

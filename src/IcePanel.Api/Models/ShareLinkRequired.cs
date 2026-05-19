@@ -14,6 +14,14 @@ namespace IcePanel.Api.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The draftId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DraftId { get; set; }
+#nullable restore
+#else
+        public string DraftId { get; set; }
+#endif
         /// <summary>The password property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -49,6 +57,7 @@ namespace IcePanel.Api.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "draftId", n => { DraftId = n.GetStringValue(); } },
                 { "password", n => { Password = n.GetStringValue(); } },
                 { "protected", n => { Protected = n.GetBoolValue(); } },
             };
@@ -60,6 +69,7 @@ namespace IcePanel.Api.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("draftId", DraftId);
             writer.WriteStringValue("password", Password);
             writer.WriteBoolValue("protected", Protected);
             writer.WriteAdditionalData(AdditionalData);

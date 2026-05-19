@@ -88,6 +88,14 @@ namespace IcePanel.Api.Models
 #else
         public string LandscapeId { get; set; }
 #endif
+        /// <summary>The latestEntityId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LatestEntityId { get; set; }
+#nullable restore
+#else
+        public string LatestEntityId { get; set; }
+#endif
         /// <summary>The modelId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -114,14 +122,6 @@ namespace IcePanel.Api.Models
 #endif
         /// <summary>The status property</summary>
         public global::IcePanel.Api.Models.DiagramStatus? Status { get; set; }
-        /// <summary>The tasksProposed property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::IcePanel.Api.Models.TaskProposed>? TasksProposed { get; set; }
-#nullable restore
-#else
-        public List<global::IcePanel.Api.Models.TaskProposed> TasksProposed { get; set; }
-#endif
         /// <summary>The type property</summary>
         public global::IcePanel.Api.Models.DiagramType? Type { get; set; }
         /// <summary>The updatedAt property</summary>
@@ -196,11 +196,11 @@ namespace IcePanel.Api.Models
                 { "handleId", n => { HandleId = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "landscapeId", n => { LandscapeId = n.GetStringValue(); } },
+                { "latestEntityId", n => { LatestEntityId = n.GetStringValue(); } },
                 { "modelId", n => { ModelId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "objects", n => { Objects = n.GetObjectValue<global::IcePanel.Api.Models.DiagramContent_objects>(global::IcePanel.Api.Models.DiagramContent_objects.CreateFromDiscriminatorValue); } },
                 { "status", n => { Status = n.GetEnumValue<global::IcePanel.Api.Models.DiagramStatus>(); } },
-                { "tasksProposed", n => { TasksProposed = n.GetCollectionOfObjectValues<global::IcePanel.Api.Models.TaskProposed>(global::IcePanel.Api.Models.TaskProposed.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "type", n => { Type = n.GetEnumValue<global::IcePanel.Api.Models.DiagramType>(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "updatedBy", n => { UpdatedBy = n.GetEnumValue<global::IcePanel.Api.Models.AuthType>(); } },
@@ -232,11 +232,11 @@ namespace IcePanel.Api.Models
             writer.WriteStringValue("handleId", HandleId);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("landscapeId", LandscapeId);
+            writer.WriteStringValue("latestEntityId", LatestEntityId);
             writer.WriteStringValue("modelId", ModelId);
             writer.WriteStringValue("name", Name);
             writer.WriteObjectValue<global::IcePanel.Api.Models.DiagramContent_objects>("objects", Objects);
             writer.WriteEnumValue<global::IcePanel.Api.Models.DiagramStatus>("status", Status);
-            writer.WriteCollectionOfObjectValues<global::IcePanel.Api.Models.TaskProposed>("tasksProposed", TasksProposed);
             writer.WriteEnumValue<global::IcePanel.Api.Models.DiagramType>("type", Type);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
             writer.WriteEnumValue<global::IcePanel.Api.Models.AuthType>("updatedBy", UpdatedBy);

@@ -74,6 +74,14 @@ namespace IcePanel.Api.Models
 #else
         public string LandscapeId { get; set; }
 #endif
+        /// <summary>The latestEntityId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LatestEntityId { get; set; }
+#nullable restore
+#else
+        public string LatestEntityId { get; set; }
+#endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -141,6 +149,7 @@ namespace IcePanel.Api.Models
                 { "index", n => { Index = n.GetDoubleValue(); } },
                 { "labels", n => { Labels = n.GetObjectValue<global::IcePanel.Api.Models.Domain_labels>(global::IcePanel.Api.Models.Domain_labels.CreateFromDiscriminatorValue); } },
                 { "landscapeId", n => { LandscapeId = n.GetStringValue(); } },
+                { "latestEntityId", n => { LatestEntityId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "updatedBy", n => { UpdatedBy = n.GetEnumValue<global::IcePanel.Api.Models.AuthType>(); } },
@@ -168,6 +177,7 @@ namespace IcePanel.Api.Models
             writer.WriteDoubleValue("index", Index);
             writer.WriteObjectValue<global::IcePanel.Api.Models.Domain_labels>("labels", Labels);
             writer.WriteStringValue("landscapeId", LandscapeId);
+            writer.WriteStringValue("latestEntityId", LatestEntityId);
             writer.WriteStringValue("name", Name);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
             writer.WriteEnumValue<global::IcePanel.Api.Models.AuthType>("updatedBy", UpdatedBy);

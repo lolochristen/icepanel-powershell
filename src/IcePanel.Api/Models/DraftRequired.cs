@@ -24,13 +24,13 @@ namespace IcePanel.Api.Models
 #endif
         /// <summary>The commit property</summary>
         public double? Commit { get; set; }
-        /// <summary>The diagramIds property</summary>
+        /// <summary>The handleId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? DiagramIds { get; set; }
+        public string? HandleId { get; set; }
 #nullable restore
 #else
-        public List<string> DiagramIds { get; set; }
+        public string HandleId { get; set; }
 #endif
         /// <summary>The labels property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,14 +39,6 @@ namespace IcePanel.Api.Models
 #nullable restore
 #else
         public global::IcePanel.Api.Models.DraftRequired_labels Labels { get; set; }
-#endif
-        /// <summary>The landscapeId property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? LandscapeId { get; set; }
-#nullable restore
-#else
-        public string LandscapeId { get; set; }
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -58,14 +50,8 @@ namespace IcePanel.Api.Models
 #endif
         /// <summary>The status property</summary>
         public global::IcePanel.Api.Models.DraftStatus? Status { get; set; }
-        /// <summary>The versionId property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? VersionId { get; set; }
-#nullable restore
-#else
-        public string VersionId { get; set; }
-#endif
+        /// <summary>The summaryDirtiedAt property</summary>
+        public DateTimeOffset? SummaryDirtiedAt { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::IcePanel.Api.Models.DraftRequired"/> and sets the default values.
         /// </summary>
@@ -93,12 +79,11 @@ namespace IcePanel.Api.Models
             {
                 { "changeSummary", n => { ChangeSummary = n.GetObjectValue<global::IcePanel.Api.Models.DraftChangeSummary>(global::IcePanel.Api.Models.DraftChangeSummary.CreateFromDiscriminatorValue); } },
                 { "commit", n => { Commit = n.GetDoubleValue(); } },
-                { "diagramIds", n => { DiagramIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "handleId", n => { HandleId = n.GetStringValue(); } },
                 { "labels", n => { Labels = n.GetObjectValue<global::IcePanel.Api.Models.DraftRequired_labels>(global::IcePanel.Api.Models.DraftRequired_labels.CreateFromDiscriminatorValue); } },
-                { "landscapeId", n => { LandscapeId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::IcePanel.Api.Models.DraftStatus>(); } },
-                { "versionId", n => { VersionId = n.GetStringValue(); } },
+                { "summaryDirtiedAt", n => { SummaryDirtiedAt = n.GetDateTimeOffsetValue(); } },
             };
         }
         /// <summary>
@@ -110,12 +95,11 @@ namespace IcePanel.Api.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::IcePanel.Api.Models.DraftChangeSummary>("changeSummary", ChangeSummary);
             writer.WriteDoubleValue("commit", Commit);
-            writer.WriteCollectionOfPrimitiveValues<string>("diagramIds", DiagramIds);
+            writer.WriteStringValue("handleId", HandleId);
             writer.WriteObjectValue<global::IcePanel.Api.Models.DraftRequired_labels>("labels", Labels);
-            writer.WriteStringValue("landscapeId", LandscapeId);
             writer.WriteStringValue("name", Name);
             writer.WriteEnumValue<global::IcePanel.Api.Models.DraftStatus>("status", Status);
-            writer.WriteStringValue("versionId", VersionId);
+            writer.WriteDateTimeOffsetValue("summaryDirtiedAt", SummaryDirtiedAt);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -15,6 +15,14 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.ShareLink
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Share link url with default options encoded in the path</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DefaultUrl { get; set; }
+#nullable restore
+#else
+        public string DefaultUrl { get; set; }
+#endif
         /// <summary>The shareLink property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -23,7 +31,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.ShareLink
 #else
         public global::IcePanel.Api.Models.ShareLink ShareLink { get; set; }
 #endif
-        /// <summary>The url property</summary>
+        /// <summary>Share link url prefix, you need to append the options short id onto a trailing path segment</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Url { get; set; }
@@ -56,6 +64,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.ShareLink
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "defaultUrl", n => { DefaultUrl = n.GetStringValue(); } },
                 { "shareLink", n => { ShareLink = n.GetObjectValue<global::IcePanel.Api.Models.ShareLink>(global::IcePanel.Api.Models.ShareLink.CreateFromDiscriminatorValue); } },
                 { "url", n => { Url = n.GetStringValue(); } },
             };
@@ -67,6 +76,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.ShareLink
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("defaultUrl", DefaultUrl);
             writer.WriteObjectValue<global::IcePanel.Api.Models.ShareLink>("shareLink", ShareLink);
             writer.WriteStringValue("url", Url);
             writer.WriteAdditionalData(AdditionalData);

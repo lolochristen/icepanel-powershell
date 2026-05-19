@@ -15,6 +15,14 @@ namespace IcePanel.Api.Landscapes.Item.Versions
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The nextCursor property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NextCursor { get; set; }
+#nullable restore
+#else
+        public string NextCursor { get; set; }
+#endif
         /// <summary>The versions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -48,6 +56,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "nextCursor", n => { NextCursor = n.GetStringValue(); } },
                 { "versions", n => { Versions = n.GetCollectionOfObjectValues<global::IcePanel.Api.Models.VersionObject>(global::IcePanel.Api.Models.VersionObject.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -58,6 +67,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("nextCursor", NextCursor);
             writer.WriteCollectionOfObjectValues<global::IcePanel.Api.Models.VersionObject>("versions", Versions);
             writer.WriteAdditionalData(AdditionalData);
         }

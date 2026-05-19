@@ -3,10 +3,9 @@ using System.Runtime.Serialization;
 using System;
 namespace IcePanel.Api.Models
 {
+    /// <summary>If rejected, the reason why</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public enum CatalogTechnologyReviewRejectionReason
-    #pragma warning restore CS1591
     {
         [EnumMember(Value = "duplicate")]
         #pragma warning disable CS1591

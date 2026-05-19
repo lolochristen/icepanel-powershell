@@ -34,7 +34,7 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item.Landscapes
         {
         }
         /// <summary>
-        /// List
+        /// List Landscapes
         /// </summary>
         /// <returns>A <see cref="global::IcePanel.Api.Organizations.Item.Teams.Item.Landscapes.LandscapesGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -63,7 +63,7 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item.Landscapes
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Organizations.Item.Teams.Item.Landscapes.LandscapesGetResponse>(requestInfo, global::IcePanel.Api.Organizations.Item.Teams.Item.Landscapes.LandscapesGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// List
+        /// List Landscapes
         /// </summary>
         /// <returns>A <see cref="global::IcePanel.Api.Organizations.Item.Teams.Item.Landscapes.LandscapesResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -93,7 +93,7 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item.Landscapes
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Organizations.Item.Teams.Item.Landscapes.LandscapesResponse>(requestInfo, global::IcePanel.Api.Organizations.Item.Teams.Item.Landscapes.LandscapesResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// List
+        /// List Landscapes
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

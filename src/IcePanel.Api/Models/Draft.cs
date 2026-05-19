@@ -48,13 +48,13 @@ namespace IcePanel.Api.Models
 #else
         public string DeletedById { get; set; }
 #endif
-        /// <summary>The diagramIds property</summary>
+        /// <summary>The handleId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? DiagramIds { get; set; }
+        public string? HandleId { get; set; }
 #nullable restore
 #else
-        public List<string> DiagramIds { get; set; }
+        public string HandleId { get; set; }
 #endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -80,6 +80,26 @@ namespace IcePanel.Api.Models
 #else
         public string LandscapeId { get; set; }
 #endif
+        /// <summary>The latestEntityId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LatestEntityId { get; set; }
+#nullable restore
+#else
+        public string LatestEntityId { get; set; }
+#endif
+        /// <summary>The mergedAt property</summary>
+        public DateTimeOffset? MergedAt { get; set; }
+        /// <summary>The mergedBy property</summary>
+        public global::IcePanel.Api.Models.AuthType? MergedBy { get; set; }
+        /// <summary>The mergedById property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MergedById { get; set; }
+#nullable restore
+#else
+        public string MergedById { get; set; }
+#endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -88,8 +108,18 @@ namespace IcePanel.Api.Models
 #else
         public string Name { get; set; }
 #endif
+        /// <summary>The originVersionId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OriginVersionId { get; set; }
+#nullable restore
+#else
+        public string OriginVersionId { get; set; }
+#endif
         /// <summary>The status property</summary>
         public global::IcePanel.Api.Models.DraftStatus? Status { get; set; }
+        /// <summary>The summaryDirtiedAt property</summary>
+        public DateTimeOffset? SummaryDirtiedAt { get; set; }
         /// <summary>The updatedAt property</summary>
         public DateTimeOffset? UpdatedAt { get; set; }
         /// <summary>The updatedBy property</summary>
@@ -157,12 +187,18 @@ namespace IcePanel.Api.Models
                 { "deletedAt", n => { DeletedAt = n.GetDateTimeOffsetValue(); } },
                 { "deletedBy", n => { DeletedBy = n.GetEnumValue<global::IcePanel.Api.Models.AuthType>(); } },
                 { "deletedById", n => { DeletedById = n.GetStringValue(); } },
-                { "diagramIds", n => { DiagramIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "handleId", n => { HandleId = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "labels", n => { Labels = n.GetObjectValue<global::IcePanel.Api.Models.Draft_labels>(global::IcePanel.Api.Models.Draft_labels.CreateFromDiscriminatorValue); } },
                 { "landscapeId", n => { LandscapeId = n.GetStringValue(); } },
+                { "latestEntityId", n => { LatestEntityId = n.GetStringValue(); } },
+                { "mergedAt", n => { MergedAt = n.GetDateTimeOffsetValue(); } },
+                { "mergedBy", n => { MergedBy = n.GetEnumValue<global::IcePanel.Api.Models.AuthType>(); } },
+                { "mergedById", n => { MergedById = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "originVersionId", n => { OriginVersionId = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::IcePanel.Api.Models.DraftStatus>(); } },
+                { "summaryDirtiedAt", n => { SummaryDirtiedAt = n.GetDateTimeOffsetValue(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "updatedBy", n => { UpdatedBy = n.GetEnumValue<global::IcePanel.Api.Models.AuthType>(); } },
                 { "updatedById", n => { UpdatedById = n.GetStringValue(); } },
@@ -188,12 +224,18 @@ namespace IcePanel.Api.Models
             writer.WriteDateTimeOffsetValue("deletedAt", DeletedAt);
             writer.WriteEnumValue<global::IcePanel.Api.Models.AuthType>("deletedBy", DeletedBy);
             writer.WriteStringValue("deletedById", DeletedById);
-            writer.WriteCollectionOfPrimitiveValues<string>("diagramIds", DiagramIds);
+            writer.WriteStringValue("handleId", HandleId);
             writer.WriteStringValue("id", Id);
             writer.WriteObjectValue<global::IcePanel.Api.Models.Draft_labels>("labels", Labels);
             writer.WriteStringValue("landscapeId", LandscapeId);
+            writer.WriteStringValue("latestEntityId", LatestEntityId);
+            writer.WriteDateTimeOffsetValue("mergedAt", MergedAt);
+            writer.WriteEnumValue<global::IcePanel.Api.Models.AuthType>("mergedBy", MergedBy);
+            writer.WriteStringValue("mergedById", MergedById);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("originVersionId", OriginVersionId);
             writer.WriteEnumValue<global::IcePanel.Api.Models.DraftStatus>("status", Status);
+            writer.WriteDateTimeOffsetValue("summaryDirtiedAt", SummaryDirtiedAt);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
             writer.WriteEnumValue<global::IcePanel.Api.Models.AuthType>("updatedBy", UpdatedBy);
             writer.WriteStringValue("updatedById", UpdatedById);

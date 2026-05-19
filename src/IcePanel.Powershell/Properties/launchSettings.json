@@ -4,7 +4,7 @@
     "debug.ps1": {
       "commandName": "Executable",
       "dotnetRunMessages": true,
-      "executablePath": "c:\\Program Files\\PowerShell\\7\\pwsh.exe",
+      "executablePath": "pwsh.exe",
       "commandLineArgs": "debug.ps1"
     }
   }

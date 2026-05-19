@@ -25,7 +25,13 @@ namespace IcePanel.Api.Models
         public string Description { get; set; }
 #endif
         /// <summary>The direction property</summary>
-        public global::IcePanel.Api.Models.ModelConnectionDirection? Direction { get; set; }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IcePanel.Api.Models.ModelConnectionDirectionNullable? Direction { get; set; }
+#nullable restore
+#else
+        public global::IcePanel.Api.Models.ModelConnectionDirectionNullable Direction { get; set; }
+#endif
         /// <summary>The handleId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -42,6 +48,14 @@ namespace IcePanel.Api.Models
 #else
         public global::IcePanel.Api.Models.ModelConnectionRequired_labels Labels { get; set; }
 #endif
+        /// <summary>The links property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IcePanel.Api.Models.ModelConnectionRequired_links? Links { get; set; }
+#nullable restore
+#else
+        public global::IcePanel.Api.Models.ModelConnectionRequired_links Links { get; set; }
+#endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -50,7 +64,7 @@ namespace IcePanel.Api.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The originId property</summary>
+        /// <summary>Model object that initiates the connection</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OriginId { get; set; }
@@ -60,7 +74,7 @@ namespace IcePanel.Api.Models
 #endif
         /// <summary>The status property</summary>
         public global::IcePanel.Api.Models.ModelConnectionStatus? Status { get; set; }
-        /// <summary>The tagIds property</summary>
+        /// <summary>Tag IDs assigned to this model</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? TagIds { get; set; }
@@ -68,7 +82,7 @@ namespace IcePanel.Api.Models
 #else
         public List<string> TagIds { get; set; }
 #endif
-        /// <summary>The targetId property</summary>
+        /// <summary>Model object that receives the message</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TargetId { get; set; }
@@ -76,13 +90,21 @@ namespace IcePanel.Api.Models
 #else
         public string TargetId { get; set; }
 #endif
-        /// <summary>catalog technology ids assigned to this model</summary>
+        /// <summary>Technology IDs assigned to this model</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? TechnologyIds { get; set; }
 #nullable restore
 #else
         public List<string> TechnologyIds { get; set; }
+#endif
+        /// <summary>Model object that facilitates the connection, such as a Kafka topic, or RabbitMQ queue</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ViaId { get; set; }
+#nullable restore
+#else
+        public string ViaId { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::IcePanel.Api.Models.ModelConnectionRequired"/> and sets the default values.
@@ -111,15 +133,17 @@ namespace IcePanel.Api.Models
             {
                 { "commit", n => { Commit = n.GetDoubleValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "direction", n => { Direction = n.GetEnumValue<global::IcePanel.Api.Models.ModelConnectionDirection>(); } },
+                { "direction", n => { Direction = n.GetObjectValue<global::IcePanel.Api.Models.ModelConnectionDirectionNullable>(global::IcePanel.Api.Models.ModelConnectionDirectionNullable.CreateFromDiscriminatorValue); } },
                 { "handleId", n => { HandleId = n.GetStringValue(); } },
                 { "labels", n => { Labels = n.GetObjectValue<global::IcePanel.Api.Models.ModelConnectionRequired_labels>(global::IcePanel.Api.Models.ModelConnectionRequired_labels.CreateFromDiscriminatorValue); } },
+                { "links", n => { Links = n.GetObjectValue<global::IcePanel.Api.Models.ModelConnectionRequired_links>(global::IcePanel.Api.Models.ModelConnectionRequired_links.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "originId", n => { OriginId = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::IcePanel.Api.Models.ModelConnectionStatus>(); } },
                 { "tagIds", n => { TagIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "targetId", n => { TargetId = n.GetStringValue(); } },
                 { "technologyIds", n => { TechnologyIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "viaId", n => { ViaId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -131,15 +155,17 @@ namespace IcePanel.Api.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("commit", Commit);
             writer.WriteStringValue("description", Description);
-            writer.WriteEnumValue<global::IcePanel.Api.Models.ModelConnectionDirection>("direction", Direction);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnectionDirectionNullable>("direction", Direction);
             writer.WriteStringValue("handleId", HandleId);
             writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnectionRequired_labels>("labels", Labels);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnectionRequired_links>("links", Links);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("originId", OriginId);
             writer.WriteEnumValue<global::IcePanel.Api.Models.ModelConnectionStatus>("status", Status);
             writer.WriteCollectionOfPrimitiveValues<string>("tagIds", TagIds);
             writer.WriteStringValue("targetId", TargetId);
             writer.WriteCollectionOfPrimitiveValues<string>("technologyIds", TechnologyIds);
+            writer.WriteStringValue("viaId", ViaId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

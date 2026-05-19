@@ -59,7 +59,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Export
         {
         }
         /// <summary>
-        /// Export
+        /// Create a background job that exports a landscape in the specified format.
         /// </summary>
         /// <returns>A <see cref="global::IcePanel.Api.Landscapes.Item.Versions.Item.Export.ExportPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -92,7 +92,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Export
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Landscapes.Item.Versions.Item.Export.ExportPostResponse>(requestInfo, global::IcePanel.Api.Landscapes.Item.Versions.Item.Export.ExportPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Export
+        /// Create a background job that exports a landscape in the specified format.
         /// </summary>
         /// <returns>A <see cref="global::IcePanel.Api.Landscapes.Item.Versions.Item.Export.ExportResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -126,7 +126,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Export
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Landscapes.Item.Versions.Item.Export.ExportResponse>(requestInfo, global::IcePanel.Api.Landscapes.Item.Versions.Item.Export.ExportResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Export
+        /// Create a background job that exports a landscape in the specified format.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -157,7 +157,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Export
             return new global::IcePanel.Api.Landscapes.Item.Versions.Item.Export.ExportRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Export
+        /// Create a background job that exports a landscape in the specified format.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ExportRequestBuilderPostQueryParameters 

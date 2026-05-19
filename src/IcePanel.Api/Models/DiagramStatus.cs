@@ -12,9 +12,5 @@ namespace IcePanel.Api.Models
         #pragma warning disable CS1591
         Current,
         #pragma warning restore CS1591
-        [EnumMember(Value = "draft")]
-        #pragma warning disable CS1591
-        Draft,
-        #pragma warning restore CS1591
     }
 }

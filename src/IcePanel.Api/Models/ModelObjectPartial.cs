@@ -34,21 +34,21 @@ namespace IcePanel.Api.Models
 #endif
         /// <summary>The external property</summary>
         public bool? External { get; set; }
-        /// <summary>IDs of the groups this model object belongs to</summary>
+        /// <summary>The groupIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? GroupIds { get; set; }
+        public global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_groupIds? GroupIds { get; set; }
 #nullable restore
 #else
-        public List<string> GroupIds { get; set; }
+        public global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_groupIds GroupIds { get; set; }
 #endif
         /// <summary>The icon property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::IcePanel.Api.Models.WithModelObject? Icon { get; set; }
+        public global::IcePanel.Api.Models.ModelObjectIconNullable? Icon { get; set; }
 #nullable restore
 #else
-        public global::IcePanel.Api.Models.WithModelObject Icon { get; set; }
+        public global::IcePanel.Api.Models.ModelObjectIconNullable Icon { get; set; }
 #endif
         /// <summary>Generic key value store used for creating custom integrations</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -87,28 +87,28 @@ namespace IcePanel.Api.Models
         /// <summary>The tagIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? TagIds { get; set; }
+        public global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_tagIds? TagIds { get; set; }
 #nullable restore
 #else
-        public List<string> TagIds { get; set; }
+        public global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_tagIds TagIds { get; set; }
 #endif
-        /// <summary>Team IDs that own this model object, does not propergate up or down</summary>
+        /// <summary>The teamIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? TeamIds { get; set; }
+        public global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_teamIds? TeamIds { get; set; }
 #nullable restore
 #else
-        public List<string> TeamIds { get; set; }
+        public global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_teamIds TeamIds { get; set; }
 #endif
         /// <summary>Model object (+child diagram, diagram groups and flows) can only be edited by owners and admins</summary>
         public bool? TeamOnlyEditing { get; set; }
-        /// <summary>Catalog technology IDs assigned to this model</summary>
+        /// <summary>The technologyIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? TechnologyIds { get; set; }
+        public global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_technologyIds? TechnologyIds { get; set; }
 #nullable restore
 #else
-        public List<string> TechnologyIds { get; set; }
+        public global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_technologyIds TechnologyIds { get; set; }
 #endif
         /// <summary>The type property</summary>
         public global::IcePanel.Api.Models.ModelObjectType? Type { get; set; }
@@ -141,17 +141,17 @@ namespace IcePanel.Api.Models
                 { "commit", n => { Commit = n.GetDoubleValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "external", n => { External = n.GetBoolValue(); } },
-                { "groupIds", n => { GroupIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "icon", n => { Icon = n.GetObjectValue<global::IcePanel.Api.Models.WithModelObject>(global::IcePanel.Api.Models.WithModelObject.CreateFromDiscriminatorValue); } },
+                { "groupIds", n => { GroupIds = n.GetObjectValue<global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_groupIds>(global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_groupIds.CreateFromDiscriminatorValue); } },
+                { "icon", n => { Icon = n.GetObjectValue<global::IcePanel.Api.Models.ModelObjectIconNullable>(global::IcePanel.Api.Models.ModelObjectIconNullable.CreateFromDiscriminatorValue); } },
                 { "labels", n => { Labels = n.GetObjectValue<global::IcePanel.Api.Models.ModelObjectPartial_labels>(global::IcePanel.Api.Models.ModelObjectPartial_labels.CreateFromDiscriminatorValue); } },
                 { "links", n => { Links = n.GetObjectValue<global::IcePanel.Api.Models.ModelObjectPartial_links>(global::IcePanel.Api.Models.ModelObjectPartial_links.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "parentId", n => { ParentId = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::IcePanel.Api.Models.ModelObjectStatus>(); } },
-                { "tagIds", n => { TagIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "teamIds", n => { TeamIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "tagIds", n => { TagIds = n.GetObjectValue<global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_tagIds>(global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_tagIds.CreateFromDiscriminatorValue); } },
+                { "teamIds", n => { TeamIds = n.GetObjectValue<global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_teamIds>(global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_teamIds.CreateFromDiscriminatorValue); } },
                 { "teamOnlyEditing", n => { TeamOnlyEditing = n.GetBoolValue(); } },
-                { "technologyIds", n => { TechnologyIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "technologyIds", n => { TechnologyIds = n.GetObjectValue<global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_technologyIds>(global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_technologyIds.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetEnumValue<global::IcePanel.Api.Models.ModelObjectType>(); } },
             };
         }
@@ -166,19 +166,303 @@ namespace IcePanel.Api.Models
             writer.WriteDoubleValue("commit", Commit);
             writer.WriteStringValue("description", Description);
             writer.WriteBoolValue("external", External);
-            writer.WriteCollectionOfPrimitiveValues<string>("groupIds", GroupIds);
-            writer.WriteObjectValue<global::IcePanel.Api.Models.WithModelObject>("icon", Icon);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_groupIds>("groupIds", GroupIds);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectIconNullable>("icon", Icon);
             writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectPartial_labels>("labels", Labels);
             writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectPartial_links>("links", Links);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("parentId", ParentId);
             writer.WriteEnumValue<global::IcePanel.Api.Models.ModelObjectStatus>("status", Status);
-            writer.WriteCollectionOfPrimitiveValues<string>("tagIds", TagIds);
-            writer.WriteCollectionOfPrimitiveValues<string>("teamIds", TeamIds);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_tagIds>("tagIds", TagIds);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_teamIds>("teamIds", TeamIds);
             writer.WriteBoolValue("teamOnlyEditing", TeamOnlyEditing);
-            writer.WriteCollectionOfPrimitiveValues<string>("technologyIds", TechnologyIds);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_technologyIds>("technologyIds", TechnologyIds);
             writer.WriteEnumValue<global::IcePanel.Api.Models.ModelObjectType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
+        }
+        /// <summary>
+        /// Composed type wrapper for classes <see cref="global::IcePanel.Api.Models.ModelObjectPartial_groupIdsMember1"/>, List&lt;string&gt;
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class ModelObjectPartial_groupIds : IComposedTypeWrapper, IParsable
+        {
+            /// <summary>Composed type representation for type <see cref="global::IcePanel.Api.Models.ModelObjectPartial_groupIdsMember1"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public global::IcePanel.Api.Models.ModelObjectPartial_groupIdsMember1? ModelObjectPartialGroupIdsMember1 { get; set; }
+#nullable restore
+#else
+            public global::IcePanel.Api.Models.ModelObjectPartial_groupIdsMember1 ModelObjectPartialGroupIdsMember1 { get; set; }
+#endif
+            /// <summary>Composed type representation for type List&lt;string&gt;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public List<string>? String { get; set; }
+#nullable restore
+#else
+            public List<string> String { get; set; }
+#endif
+            /// <summary>
+            /// Creates a new instance of the appropriate class based on discriminator value
+            /// </summary>
+            /// <returns>A <see cref="global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_groupIds"/></returns>
+            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+            public static global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_groupIds CreateFromDiscriminatorValue(IParseNode parseNode)
+            {
+                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
+                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+                var result = new global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_groupIds();
+                if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    result.ModelObjectPartialGroupIdsMember1 = new global::IcePanel.Api.Models.ModelObjectPartial_groupIdsMember1();
+                }
+                else if(parseNode.GetCollectionOfPrimitiveValues<string>()?.AsList() is List<string> stringValue)
+                {
+                    result.String = stringValue;
+                }
+                return result;
+            }
+            /// <summary>
+            /// The deserialization information for the current model
+            /// </summary>
+            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+            {
+                if(ModelObjectPartialGroupIdsMember1 != null)
+                {
+                    return ModelObjectPartialGroupIdsMember1.GetFieldDeserializers();
+                }
+                return new Dictionary<string, Action<IParseNode>>();
+            }
+            /// <summary>
+            /// Serializes information the current object
+            /// </summary>
+            /// <param name="writer">Serialization writer to use to serialize this model</param>
+            public virtual void Serialize(ISerializationWriter writer)
+            {
+                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+                if(ModelObjectPartialGroupIdsMember1 != null)
+                {
+                    writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectPartial_groupIdsMember1>(null, ModelObjectPartialGroupIdsMember1);
+                }
+                else if(String != null)
+                {
+                    writer.WriteCollectionOfPrimitiveValues<string>(null, String);
+                }
+            }
+        }
+        /// <summary>
+        /// Composed type wrapper for classes <see cref="global::IcePanel.Api.Models.ModelObjectPartial_tagIdsMember1"/>, List&lt;string&gt;
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class ModelObjectPartial_tagIds : IComposedTypeWrapper, IParsable
+        {
+            /// <summary>Composed type representation for type <see cref="global::IcePanel.Api.Models.ModelObjectPartial_tagIdsMember1"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public global::IcePanel.Api.Models.ModelObjectPartial_tagIdsMember1? ModelObjectPartialTagIdsMember1 { get; set; }
+#nullable restore
+#else
+            public global::IcePanel.Api.Models.ModelObjectPartial_tagIdsMember1 ModelObjectPartialTagIdsMember1 { get; set; }
+#endif
+            /// <summary>Composed type representation for type List&lt;string&gt;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public List<string>? String { get; set; }
+#nullable restore
+#else
+            public List<string> String { get; set; }
+#endif
+            /// <summary>
+            /// Creates a new instance of the appropriate class based on discriminator value
+            /// </summary>
+            /// <returns>A <see cref="global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_tagIds"/></returns>
+            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+            public static global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_tagIds CreateFromDiscriminatorValue(IParseNode parseNode)
+            {
+                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
+                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+                var result = new global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_tagIds();
+                if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    result.ModelObjectPartialTagIdsMember1 = new global::IcePanel.Api.Models.ModelObjectPartial_tagIdsMember1();
+                }
+                else if(parseNode.GetCollectionOfPrimitiveValues<string>()?.AsList() is List<string> stringValue)
+                {
+                    result.String = stringValue;
+                }
+                return result;
+            }
+            /// <summary>
+            /// The deserialization information for the current model
+            /// </summary>
+            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+            {
+                if(ModelObjectPartialTagIdsMember1 != null)
+                {
+                    return ModelObjectPartialTagIdsMember1.GetFieldDeserializers();
+                }
+                return new Dictionary<string, Action<IParseNode>>();
+            }
+            /// <summary>
+            /// Serializes information the current object
+            /// </summary>
+            /// <param name="writer">Serialization writer to use to serialize this model</param>
+            public virtual void Serialize(ISerializationWriter writer)
+            {
+                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+                if(ModelObjectPartialTagIdsMember1 != null)
+                {
+                    writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectPartial_tagIdsMember1>(null, ModelObjectPartialTagIdsMember1);
+                }
+                else if(String != null)
+                {
+                    writer.WriteCollectionOfPrimitiveValues<string>(null, String);
+                }
+            }
+        }
+        /// <summary>
+        /// Composed type wrapper for classes <see cref="global::IcePanel.Api.Models.ModelObjectPartial_teamIdsMember1"/>, List&lt;string&gt;
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class ModelObjectPartial_teamIds : IComposedTypeWrapper, IParsable
+        {
+            /// <summary>Composed type representation for type <see cref="global::IcePanel.Api.Models.ModelObjectPartial_teamIdsMember1"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public global::IcePanel.Api.Models.ModelObjectPartial_teamIdsMember1? ModelObjectPartialTeamIdsMember1 { get; set; }
+#nullable restore
+#else
+            public global::IcePanel.Api.Models.ModelObjectPartial_teamIdsMember1 ModelObjectPartialTeamIdsMember1 { get; set; }
+#endif
+            /// <summary>Composed type representation for type List&lt;string&gt;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public List<string>? String { get; set; }
+#nullable restore
+#else
+            public List<string> String { get; set; }
+#endif
+            /// <summary>
+            /// Creates a new instance of the appropriate class based on discriminator value
+            /// </summary>
+            /// <returns>A <see cref="global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_teamIds"/></returns>
+            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+            public static global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_teamIds CreateFromDiscriminatorValue(IParseNode parseNode)
+            {
+                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
+                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+                var result = new global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_teamIds();
+                if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    result.ModelObjectPartialTeamIdsMember1 = new global::IcePanel.Api.Models.ModelObjectPartial_teamIdsMember1();
+                }
+                else if(parseNode.GetCollectionOfPrimitiveValues<string>()?.AsList() is List<string> stringValue)
+                {
+                    result.String = stringValue;
+                }
+                return result;
+            }
+            /// <summary>
+            /// The deserialization information for the current model
+            /// </summary>
+            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+            {
+                if(ModelObjectPartialTeamIdsMember1 != null)
+                {
+                    return ModelObjectPartialTeamIdsMember1.GetFieldDeserializers();
+                }
+                return new Dictionary<string, Action<IParseNode>>();
+            }
+            /// <summary>
+            /// Serializes information the current object
+            /// </summary>
+            /// <param name="writer">Serialization writer to use to serialize this model</param>
+            public virtual void Serialize(ISerializationWriter writer)
+            {
+                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+                if(ModelObjectPartialTeamIdsMember1 != null)
+                {
+                    writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectPartial_teamIdsMember1>(null, ModelObjectPartialTeamIdsMember1);
+                }
+                else if(String != null)
+                {
+                    writer.WriteCollectionOfPrimitiveValues<string>(null, String);
+                }
+            }
+        }
+        /// <summary>
+        /// Composed type wrapper for classes <see cref="global::IcePanel.Api.Models.ModelObjectPartial_technologyIdsMember1"/>, List&lt;string&gt;
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class ModelObjectPartial_technologyIds : IComposedTypeWrapper, IParsable
+        {
+            /// <summary>Composed type representation for type <see cref="global::IcePanel.Api.Models.ModelObjectPartial_technologyIdsMember1"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public global::IcePanel.Api.Models.ModelObjectPartial_technologyIdsMember1? ModelObjectPartialTechnologyIdsMember1 { get; set; }
+#nullable restore
+#else
+            public global::IcePanel.Api.Models.ModelObjectPartial_technologyIdsMember1 ModelObjectPartialTechnologyIdsMember1 { get; set; }
+#endif
+            /// <summary>Composed type representation for type List&lt;string&gt;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public List<string>? String { get; set; }
+#nullable restore
+#else
+            public List<string> String { get; set; }
+#endif
+            /// <summary>
+            /// Creates a new instance of the appropriate class based on discriminator value
+            /// </summary>
+            /// <returns>A <see cref="global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_technologyIds"/></returns>
+            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+            public static global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_technologyIds CreateFromDiscriminatorValue(IParseNode parseNode)
+            {
+                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
+                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+                var result = new global::IcePanel.Api.Models.ModelObjectPartial.ModelObjectPartial_technologyIds();
+                if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    result.ModelObjectPartialTechnologyIdsMember1 = new global::IcePanel.Api.Models.ModelObjectPartial_technologyIdsMember1();
+                }
+                else if(parseNode.GetCollectionOfPrimitiveValues<string>()?.AsList() is List<string> stringValue)
+                {
+                    result.String = stringValue;
+                }
+                return result;
+            }
+            /// <summary>
+            /// The deserialization information for the current model
+            /// </summary>
+            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+            {
+                if(ModelObjectPartialTechnologyIdsMember1 != null)
+                {
+                    return ModelObjectPartialTechnologyIdsMember1.GetFieldDeserializers();
+                }
+                return new Dictionary<string, Action<IParseNode>>();
+            }
+            /// <summary>
+            /// Serializes information the current object
+            /// </summary>
+            /// <param name="writer">Serialization writer to use to serialize this model</param>
+            public virtual void Serialize(ISerializationWriter writer)
+            {
+                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+                if(ModelObjectPartialTechnologyIdsMember1 != null)
+                {
+                    writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectPartial_technologyIdsMember1>(null, ModelObjectPartialTechnologyIdsMember1);
+                }
+                else if(String != null)
+                {
+                    writer.WriteCollectionOfPrimitiveValues<string>(null, String);
+                }
+            }
         }
     }
 }

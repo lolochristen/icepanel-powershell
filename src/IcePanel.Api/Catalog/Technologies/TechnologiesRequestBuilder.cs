@@ -41,7 +41,7 @@ namespace IcePanel.Api.Catalog.Technologies
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TechnologiesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/catalog/technologies{?admin*,filter*}", pathParameters)
+        public TechnologiesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/catalog/technologies{?admin*,cursor*,filter*,limit*}", pathParameters)
         {
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace IcePanel.Api.Catalog.Technologies
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TechnologiesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/catalog/technologies{?admin*,filter*}", rawUrl)
+        public TechnologiesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/catalog/technologies{?admin*,cursor*,filter*,limit*}", rawUrl)
         {
         }
         /// <summary>
@@ -154,6 +154,15 @@ namespace IcePanel.Api.Catalog.Technologies
             public bool? Admin { get; set; }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            [QueryParameter("cursor")]
+            public string? Cursor { get; set; }
+#nullable restore
+#else
+            [QueryParameter("cursor")]
+            public string Cursor { get; set; }
+#endif
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
             [QueryParameter("filter")]
             public string? Filter { get; set; }
 #nullable restore
@@ -161,6 +170,8 @@ namespace IcePanel.Api.Catalog.Technologies
             [QueryParameter("filter")]
             public string Filter { get; set; }
 #endif
+            [QueryParameter("limit")]
+            public double? Limit { get; set; }
         }
         /// <summary>
         /// Configuration for the request such as headers, query parameters, and middleware options.

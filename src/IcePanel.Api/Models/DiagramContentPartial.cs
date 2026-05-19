@@ -40,14 +40,6 @@ namespace IcePanel.Api.Models
 #else
         public global::IcePanel.Api.Models.DiagramContentPartial_objects Objects { get; set; }
 #endif
-        /// <summary>The tasksProposed property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::IcePanel.Api.Models.DiagramContentPartial_tasksProposed? TasksProposed { get; set; }
-#nullable restore
-#else
-        public global::IcePanel.Api.Models.DiagramContentPartial_tasksProposed TasksProposed { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::IcePanel.Api.Models.DiagramContentPartial"/> and sets the default values.
         /// </summary>
@@ -77,7 +69,6 @@ namespace IcePanel.Api.Models
                 { "commit", n => { Commit = n.GetDoubleValue(); } },
                 { "connections", n => { Connections = n.GetObjectValue<global::IcePanel.Api.Models.DiagramContentPartial_connections>(global::IcePanel.Api.Models.DiagramContentPartial_connections.CreateFromDiscriminatorValue); } },
                 { "objects", n => { Objects = n.GetObjectValue<global::IcePanel.Api.Models.DiagramContentPartial_objects>(global::IcePanel.Api.Models.DiagramContentPartial_objects.CreateFromDiscriminatorValue); } },
-                { "tasksProposed", n => { TasksProposed = n.GetObjectValue<global::IcePanel.Api.Models.DiagramContentPartial_tasksProposed>(global::IcePanel.Api.Models.DiagramContentPartial_tasksProposed.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -91,7 +82,6 @@ namespace IcePanel.Api.Models
             writer.WriteDoubleValue("commit", Commit);
             writer.WriteObjectValue<global::IcePanel.Api.Models.DiagramContentPartial_connections>("connections", Connections);
             writer.WriteObjectValue<global::IcePanel.Api.Models.DiagramContentPartial_objects>("objects", Objects);
-            writer.WriteObjectValue<global::IcePanel.Api.Models.DiagramContentPartial_tasksProposed>("tasksProposed", TasksProposed);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

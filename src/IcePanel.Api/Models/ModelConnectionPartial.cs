@@ -25,7 +25,13 @@ namespace IcePanel.Api.Models
         public string Description { get; set; }
 #endif
         /// <summary>The direction property</summary>
-        public global::IcePanel.Api.Models.ModelConnectionDirection? Direction { get; set; }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IcePanel.Api.Models.ModelConnectionDirectionNullable? Direction { get; set; }
+#nullable restore
+#else
+        public global::IcePanel.Api.Models.ModelConnectionDirectionNullable Direction { get; set; }
+#endif
         /// <summary>The labels property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -33,6 +39,14 @@ namespace IcePanel.Api.Models
 #nullable restore
 #else
         public global::IcePanel.Api.Models.ModelConnectionPartial_labels Labels { get; set; }
+#endif
+        /// <summary>The links property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IcePanel.Api.Models.ModelConnectionPartial_links? Links { get; set; }
+#nullable restore
+#else
+        public global::IcePanel.Api.Models.ModelConnectionPartial_links Links { get; set; }
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -42,7 +56,7 @@ namespace IcePanel.Api.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The originId property</summary>
+        /// <summary>Model object that initiates the connection</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OriginId { get; set; }
@@ -55,12 +69,12 @@ namespace IcePanel.Api.Models
         /// <summary>The tagIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? TagIds { get; set; }
+        public global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_tagIds? TagIds { get; set; }
 #nullable restore
 #else
-        public List<string> TagIds { get; set; }
+        public global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_tagIds TagIds { get; set; }
 #endif
-        /// <summary>The targetId property</summary>
+        /// <summary>Model object that receives the message</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TargetId { get; set; }
@@ -68,13 +82,21 @@ namespace IcePanel.Api.Models
 #else
         public string TargetId { get; set; }
 #endif
-        /// <summary>catalog technology ids assigned to this model</summary>
+        /// <summary>The technologyIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? TechnologyIds { get; set; }
+        public global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_technologyIds? TechnologyIds { get; set; }
 #nullable restore
 #else
-        public List<string> TechnologyIds { get; set; }
+        public global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_technologyIds TechnologyIds { get; set; }
+#endif
+        /// <summary>Model object that facilitates the connection, such as a Kafka topic, or RabbitMQ queue</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ViaId { get; set; }
+#nullable restore
+#else
+        public string ViaId { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::IcePanel.Api.Models.ModelConnectionPartial"/> and sets the default values.
@@ -103,14 +125,16 @@ namespace IcePanel.Api.Models
             {
                 { "commit", n => { Commit = n.GetDoubleValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "direction", n => { Direction = n.GetEnumValue<global::IcePanel.Api.Models.ModelConnectionDirection>(); } },
+                { "direction", n => { Direction = n.GetObjectValue<global::IcePanel.Api.Models.ModelConnectionDirectionNullable>(global::IcePanel.Api.Models.ModelConnectionDirectionNullable.CreateFromDiscriminatorValue); } },
                 { "labels", n => { Labels = n.GetObjectValue<global::IcePanel.Api.Models.ModelConnectionPartial_labels>(global::IcePanel.Api.Models.ModelConnectionPartial_labels.CreateFromDiscriminatorValue); } },
+                { "links", n => { Links = n.GetObjectValue<global::IcePanel.Api.Models.ModelConnectionPartial_links>(global::IcePanel.Api.Models.ModelConnectionPartial_links.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "originId", n => { OriginId = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::IcePanel.Api.Models.ModelConnectionStatus>(); } },
-                { "tagIds", n => { TagIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "tagIds", n => { TagIds = n.GetObjectValue<global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_tagIds>(global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_tagIds.CreateFromDiscriminatorValue); } },
                 { "targetId", n => { TargetId = n.GetStringValue(); } },
-                { "technologyIds", n => { TechnologyIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "technologyIds", n => { TechnologyIds = n.GetObjectValue<global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_technologyIds>(global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_technologyIds.CreateFromDiscriminatorValue); } },
+                { "viaId", n => { ViaId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -122,15 +146,159 @@ namespace IcePanel.Api.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("commit", Commit);
             writer.WriteStringValue("description", Description);
-            writer.WriteEnumValue<global::IcePanel.Api.Models.ModelConnectionDirection>("direction", Direction);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnectionDirectionNullable>("direction", Direction);
             writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnectionPartial_labels>("labels", Labels);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnectionPartial_links>("links", Links);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("originId", OriginId);
             writer.WriteEnumValue<global::IcePanel.Api.Models.ModelConnectionStatus>("status", Status);
-            writer.WriteCollectionOfPrimitiveValues<string>("tagIds", TagIds);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_tagIds>("tagIds", TagIds);
             writer.WriteStringValue("targetId", TargetId);
-            writer.WriteCollectionOfPrimitiveValues<string>("technologyIds", TechnologyIds);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_technologyIds>("technologyIds", TechnologyIds);
+            writer.WriteStringValue("viaId", ViaId);
             writer.WriteAdditionalData(AdditionalData);
+        }
+        /// <summary>
+        /// Composed type wrapper for classes <see cref="global::IcePanel.Api.Models.ModelConnectionPartial_tagIdsMember1"/>, List&lt;string&gt;
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class ModelConnectionPartial_tagIds : IComposedTypeWrapper, IParsable
+        {
+            /// <summary>Composed type representation for type <see cref="global::IcePanel.Api.Models.ModelConnectionPartial_tagIdsMember1"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public global::IcePanel.Api.Models.ModelConnectionPartial_tagIdsMember1? ModelConnectionPartialTagIdsMember1 { get; set; }
+#nullable restore
+#else
+            public global::IcePanel.Api.Models.ModelConnectionPartial_tagIdsMember1 ModelConnectionPartialTagIdsMember1 { get; set; }
+#endif
+            /// <summary>Composed type representation for type List&lt;string&gt;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public List<string>? String { get; set; }
+#nullable restore
+#else
+            public List<string> String { get; set; }
+#endif
+            /// <summary>
+            /// Creates a new instance of the appropriate class based on discriminator value
+            /// </summary>
+            /// <returns>A <see cref="global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_tagIds"/></returns>
+            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+            public static global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_tagIds CreateFromDiscriminatorValue(IParseNode parseNode)
+            {
+                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
+                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+                var result = new global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_tagIds();
+                if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    result.ModelConnectionPartialTagIdsMember1 = new global::IcePanel.Api.Models.ModelConnectionPartial_tagIdsMember1();
+                }
+                else if(parseNode.GetCollectionOfPrimitiveValues<string>()?.AsList() is List<string> stringValue)
+                {
+                    result.String = stringValue;
+                }
+                return result;
+            }
+            /// <summary>
+            /// The deserialization information for the current model
+            /// </summary>
+            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+            {
+                if(ModelConnectionPartialTagIdsMember1 != null)
+                {
+                    return ModelConnectionPartialTagIdsMember1.GetFieldDeserializers();
+                }
+                return new Dictionary<string, Action<IParseNode>>();
+            }
+            /// <summary>
+            /// Serializes information the current object
+            /// </summary>
+            /// <param name="writer">Serialization writer to use to serialize this model</param>
+            public virtual void Serialize(ISerializationWriter writer)
+            {
+                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+                if(ModelConnectionPartialTagIdsMember1 != null)
+                {
+                    writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnectionPartial_tagIdsMember1>(null, ModelConnectionPartialTagIdsMember1);
+                }
+                else if(String != null)
+                {
+                    writer.WriteCollectionOfPrimitiveValues<string>(null, String);
+                }
+            }
+        }
+        /// <summary>
+        /// Composed type wrapper for classes <see cref="global::IcePanel.Api.Models.ModelConnectionPartial_technologyIdsMember1"/>, List&lt;string&gt;
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class ModelConnectionPartial_technologyIds : IComposedTypeWrapper, IParsable
+        {
+            /// <summary>Composed type representation for type <see cref="global::IcePanel.Api.Models.ModelConnectionPartial_technologyIdsMember1"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public global::IcePanel.Api.Models.ModelConnectionPartial_technologyIdsMember1? ModelConnectionPartialTechnologyIdsMember1 { get; set; }
+#nullable restore
+#else
+            public global::IcePanel.Api.Models.ModelConnectionPartial_technologyIdsMember1 ModelConnectionPartialTechnologyIdsMember1 { get; set; }
+#endif
+            /// <summary>Composed type representation for type List&lt;string&gt;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public List<string>? String { get; set; }
+#nullable restore
+#else
+            public List<string> String { get; set; }
+#endif
+            /// <summary>
+            /// Creates a new instance of the appropriate class based on discriminator value
+            /// </summary>
+            /// <returns>A <see cref="global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_technologyIds"/></returns>
+            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+            public static global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_technologyIds CreateFromDiscriminatorValue(IParseNode parseNode)
+            {
+                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
+                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+                var result = new global::IcePanel.Api.Models.ModelConnectionPartial.ModelConnectionPartial_technologyIds();
+                if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    result.ModelConnectionPartialTechnologyIdsMember1 = new global::IcePanel.Api.Models.ModelConnectionPartial_technologyIdsMember1();
+                }
+                else if(parseNode.GetCollectionOfPrimitiveValues<string>()?.AsList() is List<string> stringValue)
+                {
+                    result.String = stringValue;
+                }
+                return result;
+            }
+            /// <summary>
+            /// The deserialization information for the current model
+            /// </summary>
+            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+            {
+                if(ModelConnectionPartialTechnologyIdsMember1 != null)
+                {
+                    return ModelConnectionPartialTechnologyIdsMember1.GetFieldDeserializers();
+                }
+                return new Dictionary<string, Action<IParseNode>>();
+            }
+            /// <summary>
+            /// Serializes information the current object
+            /// </summary>
+            /// <param name="writer">Serialization writer to use to serialize this model</param>
+            public virtual void Serialize(ISerializationWriter writer)
+            {
+                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+                if(ModelConnectionPartialTechnologyIdsMember1 != null)
+                {
+                    writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnectionPartial_technologyIdsMember1>(null, ModelConnectionPartialTechnologyIdsMember1);
+                }
+                else if(String != null)
+                {
+                    writer.WriteCollectionOfPrimitiveValues<string>(null, String);
+                }
+            }
         }
     }
 }

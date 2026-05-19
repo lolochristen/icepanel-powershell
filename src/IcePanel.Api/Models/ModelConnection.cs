@@ -57,7 +57,13 @@ namespace IcePanel.Api.Models
         public global::IcePanel.Api.Models.ModelConnection_diagrams Diagrams { get; set; }
 #endif
         /// <summary>The direction property</summary>
-        public global::IcePanel.Api.Models.ModelConnectionDirection? Direction { get; set; }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IcePanel.Api.Models.ModelConnectionDirectionNullable? Direction { get; set; }
+#nullable restore
+#else
+        public global::IcePanel.Api.Models.ModelConnectionDirectionNullable Direction { get; set; }
+#endif
         /// <summary>The flows property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -98,6 +104,24 @@ namespace IcePanel.Api.Models
 #else
         public string LandscapeId { get; set; }
 #endif
+        /// <summary>The latestEntityId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LatestEntityId { get; set; }
+#nullable restore
+#else
+        public string LatestEntityId { get; set; }
+#endif
+        /// <summary>The linked property</summary>
+        public bool? Linked { get; set; }
+        /// <summary>The links property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IcePanel.Api.Models.ModelConnection_links? Links { get; set; }
+#nullable restore
+#else
+        public global::IcePanel.Api.Models.ModelConnection_links Links { get; set; }
+#endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -106,7 +130,7 @@ namespace IcePanel.Api.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The originId property</summary>
+        /// <summary>Model object that initiates the connection</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OriginId { get; set; }
@@ -116,7 +140,7 @@ namespace IcePanel.Api.Models
 #endif
         /// <summary>The status property</summary>
         public global::IcePanel.Api.Models.ModelConnectionStatus? Status { get; set; }
-        /// <summary>The tagIds property</summary>
+        /// <summary>Tag IDs assigned to this model</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? TagIds { get; set; }
@@ -124,7 +148,7 @@ namespace IcePanel.Api.Models
 #else
         public List<string> TagIds { get; set; }
 #endif
-        /// <summary>The targetId property</summary>
+        /// <summary>Model object that receives the message</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TargetId { get; set; }
@@ -132,7 +156,7 @@ namespace IcePanel.Api.Models
 #else
         public string TargetId { get; set; }
 #endif
-        /// <summary>catalog technology ids assigned to this model</summary>
+        /// <summary>Technology IDs assigned to this model</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? TechnologyIds { get; set; }
@@ -161,6 +185,14 @@ namespace IcePanel.Api.Models
 #nullable restore
 #else
         public string VersionId { get; set; }
+#endif
+        /// <summary>Model object that facilitates the connection, such as a Kafka topic, or RabbitMQ queue</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ViaId { get; set; }
+#nullable restore
+#else
+        public string ViaId { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::IcePanel.Api.Models.ModelConnection"/> and sets the default values.
@@ -196,12 +228,15 @@ namespace IcePanel.Api.Models
                 { "deletedById", n => { DeletedById = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "diagrams", n => { Diagrams = n.GetObjectValue<global::IcePanel.Api.Models.ModelConnection_diagrams>(global::IcePanel.Api.Models.ModelConnection_diagrams.CreateFromDiscriminatorValue); } },
-                { "direction", n => { Direction = n.GetEnumValue<global::IcePanel.Api.Models.ModelConnectionDirection>(); } },
+                { "direction", n => { Direction = n.GetObjectValue<global::IcePanel.Api.Models.ModelConnectionDirectionNullable>(global::IcePanel.Api.Models.ModelConnectionDirectionNullable.CreateFromDiscriminatorValue); } },
                 { "flows", n => { Flows = n.GetObjectValue<global::IcePanel.Api.Models.ModelConnection_flows>(global::IcePanel.Api.Models.ModelConnection_flows.CreateFromDiscriminatorValue); } },
                 { "handleId", n => { HandleId = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "labels", n => { Labels = n.GetObjectValue<global::IcePanel.Api.Models.ModelConnection_labels>(global::IcePanel.Api.Models.ModelConnection_labels.CreateFromDiscriminatorValue); } },
                 { "landscapeId", n => { LandscapeId = n.GetStringValue(); } },
+                { "latestEntityId", n => { LatestEntityId = n.GetStringValue(); } },
+                { "linked", n => { Linked = n.GetBoolValue(); } },
+                { "links", n => { Links = n.GetObjectValue<global::IcePanel.Api.Models.ModelConnection_links>(global::IcePanel.Api.Models.ModelConnection_links.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "originId", n => { OriginId = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::IcePanel.Api.Models.ModelConnectionStatus>(); } },
@@ -213,6 +248,7 @@ namespace IcePanel.Api.Models
                 { "updatedById", n => { UpdatedById = n.GetStringValue(); } },
                 { "version", n => { Version = n.GetDoubleValue(); } },
                 { "versionId", n => { VersionId = n.GetStringValue(); } },
+                { "viaId", n => { ViaId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -231,12 +267,15 @@ namespace IcePanel.Api.Models
             writer.WriteStringValue("deletedById", DeletedById);
             writer.WriteStringValue("description", Description);
             writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnection_diagrams>("diagrams", Diagrams);
-            writer.WriteEnumValue<global::IcePanel.Api.Models.ModelConnectionDirection>("direction", Direction);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnectionDirectionNullable>("direction", Direction);
             writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnection_flows>("flows", Flows);
             writer.WriteStringValue("handleId", HandleId);
             writer.WriteStringValue("id", Id);
             writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnection_labels>("labels", Labels);
             writer.WriteStringValue("landscapeId", LandscapeId);
+            writer.WriteStringValue("latestEntityId", LatestEntityId);
+            writer.WriteBoolValue("linked", Linked);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnection_links>("links", Links);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("originId", OriginId);
             writer.WriteEnumValue<global::IcePanel.Api.Models.ModelConnectionStatus>("status", Status);
@@ -248,6 +287,7 @@ namespace IcePanel.Api.Models
             writer.WriteStringValue("updatedById", UpdatedById);
             writer.WriteDoubleValue("version", Version);
             writer.WriteStringValue("versionId", VersionId);
+            writer.WriteStringValue("viaId", ViaId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

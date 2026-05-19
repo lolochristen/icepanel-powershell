@@ -18,10 +18,18 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Model.Connections
         /// <summary>The modelConnections property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::IcePanel.Api.Models.ModelConnection>? ModelConnections { get; set; }
+        public List<global::IcePanel.Api.Models.ModelConnectionExpanded>? ModelConnections { get; set; }
 #nullable restore
 #else
-        public List<global::IcePanel.Api.Models.ModelConnection> ModelConnections { get; set; }
+        public List<global::IcePanel.Api.Models.ModelConnectionExpanded> ModelConnections { get; set; }
+#endif
+        /// <summary>The nextCursor property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NextCursor { get; set; }
+#nullable restore
+#else
+        public string NextCursor { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::IcePanel.Api.Landscapes.Item.Versions.Item.Model.Connections.ConnectionsGetResponse"/> and sets the default values.
@@ -48,7 +56,8 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Model.Connections
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "modelConnections", n => { ModelConnections = n.GetCollectionOfObjectValues<global::IcePanel.Api.Models.ModelConnection>(global::IcePanel.Api.Models.ModelConnection.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "modelConnections", n => { ModelConnections = n.GetCollectionOfObjectValues<global::IcePanel.Api.Models.ModelConnectionExpanded>(global::IcePanel.Api.Models.ModelConnectionExpanded.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "nextCursor", n => { NextCursor = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -58,7 +67,8 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Model.Connections
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::IcePanel.Api.Models.ModelConnection>("modelConnections", ModelConnections);
+            writer.WriteCollectionOfObjectValues<global::IcePanel.Api.Models.ModelConnectionExpanded>("modelConnections", ModelConnections);
+            writer.WriteStringValue("nextCursor", NextCursor);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -23,6 +23,14 @@ namespace IcePanel.Api.Catalog.Technologies
 #else
         public List<global::IcePanel.Api.Models.CatalogTechnology> CatalogTechnologies { get; set; }
 #endif
+        /// <summary>The nextCursor property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NextCursor { get; set; }
+#nullable restore
+#else
+        public string NextCursor { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::IcePanel.Api.Catalog.Technologies.TechnologiesGetResponse"/> and sets the default values.
         /// </summary>
@@ -49,6 +57,7 @@ namespace IcePanel.Api.Catalog.Technologies
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "catalogTechnologies", n => { CatalogTechnologies = n.GetCollectionOfObjectValues<global::IcePanel.Api.Models.CatalogTechnology>(global::IcePanel.Api.Models.CatalogTechnology.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "nextCursor", n => { NextCursor = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -59,6 +68,7 @@ namespace IcePanel.Api.Catalog.Technologies
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::IcePanel.Api.Models.CatalogTechnology>("catalogTechnologies", CatalogTechnologies);
+            writer.WriteStringValue("nextCursor", NextCursor);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

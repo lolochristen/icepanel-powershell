@@ -34,7 +34,7 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item.Model.Objects
         {
         }
         /// <summary>
-        /// List
+        /// List Model Objects
         /// </summary>
         /// <returns>A <see cref="global::IcePanel.Api.Organizations.Item.Teams.Item.Model.Objects.ObjectsGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item.Model.Objects
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Organizations.Item.Teams.Item.Model.Objects.ObjectsGetResponse>(requestInfo, global::IcePanel.Api.Organizations.Item.Teams.Item.Model.Objects.ObjectsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// List
+        /// List Model Objects
         /// </summary>
         /// <returns>A <see cref="global::IcePanel.Api.Organizations.Item.Teams.Item.Model.Objects.ObjectsResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -97,7 +97,7 @@ namespace IcePanel.Api.Organizations.Item.Teams.Item.Model.Objects
             return await RequestAdapter.SendAsync<global::IcePanel.Api.Organizations.Item.Teams.Item.Model.Objects.ObjectsResponse>(requestInfo, global::IcePanel.Api.Organizations.Item.Teams.Item.Model.Objects.ObjectsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// List
+        /// List Model Objects
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

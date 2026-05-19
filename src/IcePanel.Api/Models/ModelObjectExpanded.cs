@@ -12,6 +12,30 @@ namespace IcePanel.Api.Models
     public partial class ModelObjectExpanded : global::IcePanel.Api.Models.ModelObject, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>The domain property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IcePanel.Api.Models.DomainExport? Domain { get; set; }
+#nullable restore
+#else
+        public global::IcePanel.Api.Models.DomainExport Domain { get; set; }
+#endif
+        /// <summary>Expanded flow exports keyed by flow ID.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IcePanel.Api.Models.ModelObjectExpanded_flowsExpanded? FlowsExpanded { get; set; }
+#nullable restore
+#else
+        public global::IcePanel.Api.Models.ModelObjectExpanded_flowsExpanded FlowsExpanded { get; set; }
+#endif
+        /// <summary>The tags property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::IcePanel.Api.Models.ModelObjectExpanded_tags? Tags { get; set; }
+#nullable restore
+#else
+        public global::IcePanel.Api.Models.ModelObjectExpanded_tags Tags { get; set; }
+#endif
         /// <summary>The technologies property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -38,6 +62,9 @@ namespace IcePanel.Api.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
+                { "domain", n => { Domain = n.GetObjectValue<global::IcePanel.Api.Models.DomainExport>(global::IcePanel.Api.Models.DomainExport.CreateFromDiscriminatorValue); } },
+                { "flowsExpanded", n => { FlowsExpanded = n.GetObjectValue<global::IcePanel.Api.Models.ModelObjectExpanded_flowsExpanded>(global::IcePanel.Api.Models.ModelObjectExpanded_flowsExpanded.CreateFromDiscriminatorValue); } },
+                { "tags", n => { Tags = n.GetObjectValue<global::IcePanel.Api.Models.ModelObjectExpanded_tags>(global::IcePanel.Api.Models.ModelObjectExpanded_tags.CreateFromDiscriminatorValue); } },
                 { "technologies", n => { Technologies = n.GetObjectValue<global::IcePanel.Api.Models.ModelObjectExpanded_technologies>(global::IcePanel.Api.Models.ModelObjectExpanded_technologies.CreateFromDiscriminatorValue); } },
             };
         }
@@ -49,6 +76,9 @@ namespace IcePanel.Api.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.DomainExport>("domain", Domain);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectExpanded_flowsExpanded>("flowsExpanded", FlowsExpanded);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectExpanded_tags>("tags", Tags);
             writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectExpanded_technologies>("technologies", Technologies);
         }
     }

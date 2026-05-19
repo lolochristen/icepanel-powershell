@@ -80,6 +80,14 @@ namespace IcePanel.Api.Models
 #else
         public string LandscapeId { get; set; }
 #endif
+        /// <summary>The latestEntityId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LatestEntityId { get; set; }
+#nullable restore
+#else
+        public string LatestEntityId { get; set; }
+#endif
         /// <summary>The mentionedUserIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -149,6 +157,7 @@ namespace IcePanel.Api.Models
                 { "handleId", n => { HandleId = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "landscapeId", n => { LandscapeId = n.GetStringValue(); } },
+                { "latestEntityId", n => { LatestEntityId = n.GetStringValue(); } },
                 { "mentionedUserIds", n => { MentionedUserIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "replyCount", n => { ReplyCount = n.GetDoubleValue(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
@@ -177,6 +186,7 @@ namespace IcePanel.Api.Models
             writer.WriteStringValue("handleId", HandleId);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("landscapeId", LandscapeId);
+            writer.WriteStringValue("latestEntityId", LatestEntityId);
             writer.WriteCollectionOfPrimitiveValues<string>("mentionedUserIds", MentionedUserIds);
             writer.WriteDoubleValue("replyCount", ReplyCount);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);

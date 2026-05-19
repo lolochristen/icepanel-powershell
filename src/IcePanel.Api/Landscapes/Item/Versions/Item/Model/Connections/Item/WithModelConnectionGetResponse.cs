@@ -18,10 +18,10 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Model.Connections.Item
         /// <summary>The modelConnection property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::IcePanel.Api.Models.ModelConnection? ModelConnection { get; set; }
+        public global::IcePanel.Api.Models.ModelConnectionExpanded? ModelConnection { get; set; }
 #nullable restore
 #else
-        public global::IcePanel.Api.Models.ModelConnection ModelConnection { get; set; }
+        public global::IcePanel.Api.Models.ModelConnectionExpanded ModelConnection { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::IcePanel.Api.Landscapes.Item.Versions.Item.Model.Connections.Item.WithModelConnectionGetResponse"/> and sets the default values.
@@ -48,7 +48,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Model.Connections.Item
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "modelConnection", n => { ModelConnection = n.GetObjectValue<global::IcePanel.Api.Models.ModelConnection>(global::IcePanel.Api.Models.ModelConnection.CreateFromDiscriminatorValue); } },
+                { "modelConnection", n => { ModelConnection = n.GetObjectValue<global::IcePanel.Api.Models.ModelConnectionExpanded>(global::IcePanel.Api.Models.ModelConnectionExpanded.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace IcePanel.Api.Landscapes.Item.Versions.Item.Model.Connections.Item
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnection>("modelConnection", ModelConnection);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelConnectionExpanded>("modelConnection", ModelConnection);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

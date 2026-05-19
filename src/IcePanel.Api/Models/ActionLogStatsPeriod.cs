@@ -24,5 +24,9 @@ namespace IcePanel.Api.Models
         #pragma warning disable CS1591
         Year,
         #pragma warning restore CS1591
+        [EnumMember(Value = "all")]
+        #pragma warning disable CS1591
+        All,
+        #pragma warning restore CS1591
     }
 }

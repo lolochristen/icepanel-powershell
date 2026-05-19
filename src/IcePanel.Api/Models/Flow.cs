@@ -82,6 +82,14 @@ namespace IcePanel.Api.Models
 #else
         public string LandscapeId { get; set; }
 #endif
+        /// <summary>The latestEntityId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LatestEntityId { get; set; }
+#nullable restore
+#else
+        public string LatestEntityId { get; set; }
+#endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -100,14 +108,6 @@ namespace IcePanel.Api.Models
         public bool? ShowAllSteps { get; set; }
         /// <summary>The showConnectionNames property</summary>
         public bool? ShowConnectionNames { get; set; }
-        /// <summary>The stats property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::IcePanel.Api.Models.FlowStats? Stats { get; set; }
-#nullable restore
-#else
-        public global::IcePanel.Api.Models.FlowStats Stats { get; set; }
-#endif
         /// <summary>The steps property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -188,13 +188,13 @@ namespace IcePanel.Api.Models
                 { "index", n => { Index = n.GetDoubleValue(); } },
                 { "labels", n => { Labels = n.GetObjectValue<global::IcePanel.Api.Models.Flow_labels>(global::IcePanel.Api.Models.Flow_labels.CreateFromDiscriminatorValue); } },
                 { "landscapeId", n => { LandscapeId = n.GetStringValue(); } },
+                { "latestEntityId", n => { LatestEntityId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "pinned", n => { Pinned = n.GetBoolValue(); } },
                 { "pinnedAt", n => { PinnedAt = n.GetDateTimeOffsetValue(); } },
                 { "pinnedIndex", n => { PinnedIndex = n.GetDoubleValue(); } },
                 { "showAllSteps", n => { ShowAllSteps = n.GetBoolValue(); } },
                 { "showConnectionNames", n => { ShowConnectionNames = n.GetBoolValue(); } },
-                { "stats", n => { Stats = n.GetObjectValue<global::IcePanel.Api.Models.FlowStats>(global::IcePanel.Api.Models.FlowStats.CreateFromDiscriminatorValue); } },
                 { "steps", n => { Steps = n.GetObjectValue<global::IcePanel.Api.Models.Flow_steps>(global::IcePanel.Api.Models.Flow_steps.CreateFromDiscriminatorValue); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "updatedBy", n => { UpdatedBy = n.GetEnumValue<global::IcePanel.Api.Models.AuthType>(); } },
@@ -226,13 +226,13 @@ namespace IcePanel.Api.Models
             writer.WriteDoubleValue("index", Index);
             writer.WriteObjectValue<global::IcePanel.Api.Models.Flow_labels>("labels", Labels);
             writer.WriteStringValue("landscapeId", LandscapeId);
+            writer.WriteStringValue("latestEntityId", LatestEntityId);
             writer.WriteStringValue("name", Name);
             writer.WriteBoolValue("pinned", Pinned);
             writer.WriteDateTimeOffsetValue("pinnedAt", PinnedAt);
             writer.WriteDoubleValue("pinnedIndex", PinnedIndex);
             writer.WriteBoolValue("showAllSteps", ShowAllSteps);
             writer.WriteBoolValue("showConnectionNames", ShowConnectionNames);
-            writer.WriteObjectValue<global::IcePanel.Api.Models.FlowStats>("stats", Stats);
             writer.WriteObjectValue<global::IcePanel.Api.Models.Flow_steps>("steps", Steps);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
             writer.WriteEnumValue<global::IcePanel.Api.Models.AuthType>("updatedBy", UpdatedBy);

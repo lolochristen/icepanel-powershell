@@ -61,10 +61,10 @@ namespace IcePanel.Api.Models
         /// <summary>The icon property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::IcePanel.Api.Models.Objects? Icon { get; set; }
+        public global::IcePanel.Api.Models.ModelObjectIconNullable? Icon { get; set; }
 #nullable restore
 #else
-        public global::IcePanel.Api.Models.Objects Icon { get; set; }
+        public global::IcePanel.Api.Models.ModelObjectIconNullable Icon { get; set; }
 #endif
         /// <summary>Generic key value store used for creating custom integrations</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -100,7 +100,7 @@ namespace IcePanel.Api.Models
 #endif
         /// <summary>The status property</summary>
         public global::IcePanel.Api.Models.ModelObjectStatus? Status { get; set; }
-        /// <summary>The tagIds property</summary>
+        /// <summary>Tag IDs assigned to this model</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? TagIds { get; set; }
@@ -118,7 +118,7 @@ namespace IcePanel.Api.Models
 #endif
         /// <summary>Model object (+child diagram, diagram groups and flows) can only be edited by owners and admins</summary>
         public bool? TeamOnlyEditing { get; set; }
-        /// <summary>Catalog technology IDs assigned to this model</summary>
+        /// <summary>Technology IDs assigned to this model</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? TechnologyIds { get; set; }
@@ -160,7 +160,7 @@ namespace IcePanel.Api.Models
                 { "external", n => { External = n.GetBoolValue(); } },
                 { "groupIds", n => { GroupIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "handleId", n => { HandleId = n.GetStringValue(); } },
-                { "icon", n => { Icon = n.GetObjectValue<global::IcePanel.Api.Models.Objects>(global::IcePanel.Api.Models.Objects.CreateFromDiscriminatorValue); } },
+                { "icon", n => { Icon = n.GetObjectValue<global::IcePanel.Api.Models.ModelObjectIconNullable>(global::IcePanel.Api.Models.ModelObjectIconNullable.CreateFromDiscriminatorValue); } },
                 { "labels", n => { Labels = n.GetObjectValue<global::IcePanel.Api.Models.ModelObjectRequired_labels>(global::IcePanel.Api.Models.ModelObjectRequired_labels.CreateFromDiscriminatorValue); } },
                 { "links", n => { Links = n.GetObjectValue<global::IcePanel.Api.Models.ModelObjectRequired_links>(global::IcePanel.Api.Models.ModelObjectRequired_links.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -187,7 +187,7 @@ namespace IcePanel.Api.Models
             writer.WriteBoolValue("external", External);
             writer.WriteCollectionOfPrimitiveValues<string>("groupIds", GroupIds);
             writer.WriteStringValue("handleId", HandleId);
-            writer.WriteObjectValue<global::IcePanel.Api.Models.Objects>("icon", Icon);
+            writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectIconNullable>("icon", Icon);
             writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectRequired_labels>("labels", Labels);
             writer.WriteObjectValue<global::IcePanel.Api.Models.ModelObjectRequired_links>("links", Links);
             writer.WriteStringValue("name", Name);
