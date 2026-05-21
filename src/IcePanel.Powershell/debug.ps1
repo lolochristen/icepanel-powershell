@@ -15,7 +15,7 @@ $ls | Format-Table
 
 #Export-IcePanelLandscape $ls[1].Id -FilePath "landscape.json"
 
-#Get-Content -Raw "landscape.json" | Import-IcePanelLandscape $ls[0].Id
+#Get-Content -Raw "landscape.json" | Import-IcePanelLandscape $ls[0].Id -FromExportFormat
 
 # Request-IcePanelDiagramImage $diag[0]
 

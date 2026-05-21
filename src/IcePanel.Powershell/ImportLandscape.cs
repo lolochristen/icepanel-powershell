@@ -1,6 +1,8 @@
-﻿using IcePanel.Api.Models;
+﻿using IcePanel.Api;
+using IcePanel.Api.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System.Management.Automation;
+using System.Text;
 
 namespace IcePanel.Powershell;
 
@@ -29,6 +31,10 @@ public class ImportLandscape : IcePanelCmdlet
         ValueFromPipelineByPropertyName = true)]
     public PSObject? InputObject { get; set; }
 
+
+    [Parameter]
+    public SwitchParameter FromExportFormat { get; set; }
+
     protected override void ProcessRecord()
     {
         var api = GetApiClient();
@@ -49,7 +55,14 @@ public class ImportLandscape : IcePanelCmdlet
 
                 if (InputObject.BaseObject is string s)
                 {
-                    importData = await KiotaJsonSerializer.DeserializeAsync<LandscapeImportData>(s);
+                    if (FromExportFormat.IsPresent)
+                    {
+                        importData = await LandscapeImportMapper.FromJson(s);
+                    }
+                    else
+                    {
+                        importData = await KiotaJsonSerializer.DeserializeAsync<LandscapeImportData>(s);
+                    }
                 }
                 else if (InputObject.BaseObject is LandscapeImportData data)
                 {
@@ -58,7 +71,14 @@ public class ImportLandscape : IcePanelCmdlet
                 else if (InputObject.BaseObject is byte[] bytes)
                 {
                     using var ms = new MemoryStream(bytes);
-                    importData = await KiotaJsonSerializer.DeserializeAsync<LandscapeImportData>(ms);
+                    if (FromExportFormat.IsPresent)
+                    {
+                        importData = await LandscapeImportMapper.FromJson(Encoding.UTF8.GetString(ms.ToArray()));
+                    }
+                    else
+                    {
+                        importData = await KiotaJsonSerializer.DeserializeAsync<LandscapeImportData>(ms);
+                    }
                 }
                 else
                 {
